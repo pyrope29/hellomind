@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hellomind.dao.MemberDao">
+	
+	<insert id="insertMember" parameterType="memberDto">
+		INSERT INTO MEMBER (MID,MPW,MEMAIL,MPNUM,MSTATS,MREGDATE) 
+ 			VALUES (#{mId},#{mPw},#{mEmail},#{mPnum},'0',NOW())
+	</insert>
+	<update id="updateMember" parameterType="memberDto">
+		UPDATE MEMBER 
+			SET MEMAIL=#{mEmail},MPW=#{mPw},MPNUM=#{mPnum},MSTATS=#{mStats},MREGDATE=#{mRegdate} 
+				WHERE MID=#{mId}
+	</update>
+	<select id="selectMember" parameterType="String" resultType="memberDto">
+		SELECT * FROM MEMBER 
+			WHERE MID=#{mId}
+	</select>
+	<select id="selectAllMember" resultType="memberDto">
+		SELECT * FROM MEMBER
+	</select>
+	<update id="deleteMember" parameterType="String">
+		UPDATE MEMBER
+			SET MSTATS='2' 
+				WHERE MID=#{mId}
+	</update>
+</mapper>

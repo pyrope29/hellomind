@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> 
+	
+	<context:component-scan base-package="com.hellomind.controller"/>
+	<context:component-scan base-package="com.hellomind.service"/>
+	
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler/>
+
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+	<mvc:annotation-driven> <!-- json 한글깨짐 방지 -->
+	 <mvc:message-converters>
+	   <beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
+	     <beans:property name="supportedMediaTypes">
+	       <beans:list>
+	         <beans:value>text/html;charset=utf-8</beans:value>
+	         <beans:value>application/json;charset=utf-8</beans:value>
+	       </beans:list>
+	     </beans:property>
+	   </beans:bean>
+	 </mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<mvc:interceptors>
+    <mvc:interceptor>
+      <mvc:mapping path="/**"/>
+      <mvc:exclude-mapping path="/"/>
+      <mvc:exclude-mapping path="/member/**"/>
+      <mvc:exclude-mapping path="/css/**"/>
+      <mvc:exclude-mapping path="/js/**"/>
+      <bean class="com.hellomind.interceptor.HandlerInterceptor" />
+    </mvc:interceptor>
+   </mvc:interceptors>  
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	
+	<!--  javax 메일 보내기 (SEND)
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="${google.mail_id}" />
+		<property name="password" value="${google.mail_pw}" />
+
+		email 요청시는 SMTP
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean> -->
+	
+	<!-- 메일보내기 corin2
+   <bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="corin2site@gmail.com" />
+		<property name="password" value="corin2.site" />
+		
+		<property name="javaMailProperties">
+		   <props>
+		         <prop key="mail.transport.protocol">smtp</prop>
+		         <prop key="mail.smtp.auth">true</prop>
+		         <prop key="mail.smtp.starttls.enable">true</prop>
+		         <prop key="mail.debug">true</prop>
+		   </props>
+		</property>
+	</bean>
+	 -->
+</beans>
