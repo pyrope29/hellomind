@@ -26,33 +26,4 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-</div>
-
-</body>
-
-
-	
-	<!-- Core JS Files -->
-	<script src="${root}/resources/js/jquery-3.2.1.js" type="text/javascript"></script>
-	<script src="${root}/resources/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
-	<script src="${root}/resources/js/popper.js" type="text/javascript"></script>
-	<script src="${root}/resources/js/bootstrap.min.js" type="text/javascript"></script>
-	
-	<!-- Switches -->
-	<script src="${root}/resources/js/bootstrap-switch.min.js"></script>
-	
-	<!--  Plugins for Slider -->
-	<script src="${root}/resources/js/nouislider.js"></script>
-	
-	<!--  Plugins for DateTimePicker -->
-	<script src="${root}/resources/js/moment.min.js"></script>
-	<script src="${root}/resources/js/bootstrap-datetimepicker.min.js"></script>
-	
-	<!--  Paper Kit Initialization and functons -->
-	<script src="${root}/resources/js/paper-kit.js?v=2.1.0"></script>
-
-
-
-</html>
-
-
+<%@ include file="/WEB-INF/views/include/footer.jsp"%>   

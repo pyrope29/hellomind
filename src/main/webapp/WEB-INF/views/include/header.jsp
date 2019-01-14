@@ -17,42 +17,50 @@
 		</div>
 		<div class="collapse navbar-collapse" id="navbarToggler">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="${root}/col/colList">Counselling | </a></li>
-				<li class="nav-item"><a class="nav-link" href="#">My Mind |
-				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Mind Note | </a></li>
-				
+				<div class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="${root}/col/colList" role="button" aria-haspopup="true"
+						aria-expanded="true">Counselling</a>
+					<ul class="dropdown-menu dropdown-menu-right dropdown-danger">
+						<li class="dropdown-header" href="#pk">councelling</li>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#pk">상담하기</a>
+						<a class="dropdown-item" href="#pk">이용권 구매하기</a>
+						<a class="dropdown-item" href="#pk">상담사 지원하기</a>
+					</ul>
+				</div>
+				<div class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="${root}/col/colList" role="button" aria-haspopup="true"
+						aria-expanded="true">My Mind</a>
+					<ul class="dropdown-menu dropdown-menu-right dropdown-danger">
+						<li class="dropdown-header" href="#pk">My Mind</li>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="${root}/member/mypage">내 정보</a>
+						<a class="dropdown-item" href="#pk">예약 내역</a>
+						<a class="dropdown-item" href="#pk">상담 내역</a>
+					</ul>
+				</div>
+				<%-- <div class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="${root}/col/colList" role="button" aria-haspopup="true"
+						aria-expanded="true">Mind Note</a>
+					<ul class="dropdown-menu dropdown-menu-right dropdown-danger">
+						<li class="dropdown-header" href="#pk">Mind Note</li>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#pk">고민 작성</a>
+						<a class="dropdown-item" href="#pk">내 고민 보기</a>
+						<a class="dropdown-item" href="#pk">내 히스토리</a>
+					</ul>
+				</div> --%>
 				<c:if test="${userId==null}">
-					<li class="nav-item"><a class="nav-link" href="${root}/member/login">&nbsp;&nbsp;&nbsp;&nbsp;
-					<i class="nc-icon nc-single-02" aria-hidden="true"></i></a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${root}/member/login">&nbsp;&nbsp;&nbsp;&nbsp; <i
+							class="nc-icon nc-single-02" aria-hidden="true"></i>Login</a></li>
 				</c:if>
 				<c:if test="${userId!=null}">
-					<!-- <div class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown"
-						href="#pk" role="button" aria-haspopup="true" aria-expanded="false"><i class="nc-icon nc-align-center" aria-hidden="true"></i></a>
-					<ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-						<li class="dropdown-header" href="#pk">settings</li> 	
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#pk">login</a>
-						<a class="dropdown-item" href="#pk">join</a>
-					</ul> 
-					</div> -->
-					<div class="nav-item dropdown">
-	                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#pk" role="button" aria-haspopup="true" aria-expanded="true"><i class="nc-icon nc-settings-gear-65" aria-hidden="true"></i></a>
-	                    <ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-	                        <li class="dropdown-header" href="#pk">login or join</li>
-	                        <div class="dropdown-divider"></div>
-	                        <a class="dropdown-item" href="#pk">login </a>
-	                        <a class="dropdown-item" href="#pk">join</a>
-	                    </ul>
-                    </div>
-                    
-                    
-                    
-					<li class="nav-item"><a class="nav-link" href="${root}/member/logout">&nbsp;&nbsp;&nbsp;&nbsp;
-					<i class="nc-icon nc-user-run" aria-hidden="true"></i></a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${root}/member/logout">&nbsp;&nbsp;&nbsp;&nbsp; <i
+							class="nc-icon nc-user-run" aria-hidden="true"></i>Logout</a></li>
 				</c:if>
 			</ul>
-		</div>			
+		</div>
 	</div>
 </nav>

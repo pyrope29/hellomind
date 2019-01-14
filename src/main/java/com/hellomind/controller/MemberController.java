@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -124,31 +125,48 @@ public class MemberController {
 		return "redirect:/";
 	}
 
-	
-/*	@RequestMapping(value = "modify.bit", method = RequestMethod.GET)
-	public String modify(Model model, HttpSession session) {
-		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+	/* 내정보 확인, 수정 */
+	@RequestMapping(value = "mypage", method = RequestMethod.GET)
+	public String mypage(HttpSession session, Model model) {
 		
-		if(memberDto != null) {
-			MemberDto member = memberService.selectMemberById(memberDto.getId());
-			
-			model.addAttribute("id", member.getId());
-			model.addAttribute("name", member.getName());
-			model.addAttribute("bdate", member.getBdate().substring(0, 10));
-			model.addAttribute("gender", member.getGender());
-			model.addAttribute("pnum", member.getPnum());
-			model.addAttribute("zcode", member.getZcode());
-			model.addAttribute("addr", member.getAddr());
-			return "member/modify";
-		} else {
-			model.addAttribute("msg", "회원전용 게시판입니다. 로그인 해주세요");
-			model.addAttribute("url", "login.bit");
-			return "error";
-		}
+		MemberDto member = memberService.selectMember((String) session.getAttribute("userId"));
 		
+		System.out.println(member);
 		
+		model.addAttribute("mId", member.getmId());
+		model.addAttribute("mPnum", member.getmPnum());
+		model.addAttribute("mEmail", member.getmEmail());
+		model.addAttribute("mRegdate", member.getmRegdate());
+		model.addAttribute("mPw", member.getmPw());
+		
+		return "member/mypage";
 	}
+
+	@RequestMapping(method = RequestMethod.PUT)
+	public @ResponseBody String modifyMember(@RequestBody MemberDto memberDto, HttpSession session, Model model,
+			HttpServletRequest request) {
+		
+		System.out.println("나오냐");
+			
+		System.out.println("memberDto :" + memberDto);
+		model.addAttribute("msg", "회원수정이 완료되었습니다");
+		model.addAttribute("url", "member/mypage");
+		return "common/info";
+	}
+		
+		/*MemberDto member = (MemberDto) session.getAttribute("userId");
+		memberDto.setmPw(member.getmPw());
+		if (0 < memberService.updateMember(memberDto)) {
+			System.out.println( "회원수정이 완료되었습니다");
+			return "{\"result\" : \"YES\" }" ;
+		} else {
+			System.out.println( "회원수정이 실패했습니다");
+			return "{\"result\" : \"NO\" }" ;
+		}
+	*/
 	
+	
+/*	
 	@RequestMapping(value = "modifyPw.bit", method = RequestMethod.GET)
 	public String modifyPw(Model model, HttpSession session) {
 		return "member/modifyPw";
@@ -198,20 +216,6 @@ public class MemberController {
 		return "member/view";
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, headers={"Content-type=application/json"})
-	public @ResponseBody String modifyMember(@RequestBody MemberDto memberDto, HttpSession session, Model model,
-			HttpServletRequest request) {
-		
-		MemberDto member = (MemberDto) session.getAttribute("userInfo");
-		memberDto.setPw(member.getPw());
-		if (0 < memberService.updateMember(memberDto)) {
-			System.out.println( "회원수정이 완료되었습니다");
-			return "{\"result\" : \"YES\" }" ;
-		} else {
-			System.out.println( "회원수정이 실패했습니다");
-			return "{\"result\" : \"NO\" }" ;
-		}
-	}
 	
 	@RequestMapping(value="modifyPw", method = RequestMethod.PUT, headers={"Content-type=application/json"})
 	public @ResponseBody String modifyPw(@RequestParam Map<String, String> param, HttpSession session, Model model,
