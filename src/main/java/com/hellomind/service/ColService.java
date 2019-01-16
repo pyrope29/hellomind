@@ -15,7 +15,5 @@ public interface ColService {
 
 	ColDto selectCol(String cId);
 
-	List<ColDto> selectAllCol(Map<String,Object> map);
-	
-	 Map<String, Object> getColList(Map<String, Object> data);
+	 Map<String, Object> selectColList(Map<String, Object> data);
 }

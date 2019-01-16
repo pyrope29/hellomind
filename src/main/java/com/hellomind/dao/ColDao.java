@@ -14,7 +14,7 @@ public interface ColDao {
 
 	ColDto selectCol(String cId);
 
-	List<ColDto> selectAllCol(Map<String,Object> map);
+	List<ColDto> selectColList(Map<String, Object> data);
 
-	int selectCount(String keyword);
+	int selectCount(Map<String, Object> map);
 }

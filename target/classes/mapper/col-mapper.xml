@@ -20,25 +20,14 @@
 		SELECT * FROM COL 
 			WHERE CID=#{cId}
 	</select>
-	<select id="selectAllCol" parameterType="Map" resultType="ColDto">
+	<select id="selectColList" parameterType="Map" resultType="ColDto">
 		SELECT SQL_CALC_FOUND_ROWS CID, CNAME, CEMAIL, CPNUM 
 			FROM COL 
-				WHERE CID LIKE CONCAT('%',#{keyword},'%') 
-					ORDER BY CID DESC
-				LIMIT #{NUM_OF_MSG_PER_PAGE}
-				OFFSET #{START_ROW}
-	</select>
-	<select id="getColList" parameterType="Map" resultType="Map">
-		SELECT SQL_CALC_FOUND_ROWS CID, CNAME, CEMAIL, CPNUM 
-			FROM COL 
-				WHERE CID LIKE CONCAT('%',#{keyword},'%') 
-					ORDER BY CID DESC
-				LIMIT #{NUM_OF_MSG_PER_PAGE}
-				OFFSET #{START_ROW}
+				ORDER BY CREGDATE DESC
+					LIMIT #{NUM_OF_MSG_PER_PAGE}
+					OFFSET #{START_ROW}
 	</select>
 	<select id="selectCount" parameterType="String">
-		SELECT COUNT(*)
-			FROM COL
-				WHERE CID LIKE CONCAT('%',#{keyword},'%')
+		SELECT COUNT(*) FROM COL
 	</select>
 </mapper>

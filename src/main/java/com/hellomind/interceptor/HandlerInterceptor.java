@@ -13,8 +13,7 @@ public class HandlerInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 
 		HttpSession session = request.getSession();
-		String userId = (String) session.getAttribute("userId");
-		if (userId == null) {
+		if (session.getAttribute("userInfo") == null) {
 			// 로그인되어 있지 않음, 요청 진행 중단.
 			// 로그인 화면으로 이동
 			response.sendRedirect("/member/login");

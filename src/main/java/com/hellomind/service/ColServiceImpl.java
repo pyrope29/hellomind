@@ -36,32 +36,16 @@ public class ColServiceImpl implements ColService {
 		return sqlSession.getMapper(ColDao.class).selectCol(cId);
 	}
 
-	@Override
-	public List<ColDto> selectAllCol(Map<String,Object> map) {
-		return sqlSession.getMapper(ColDao.class).selectAllCol(map);
-	}
-
 
 /* 페이징 처리  */
-	public Map<String, Object> getColList(Map<String, Object> data) {
+	public Map<String, Object> selectColList(Map<String, Object> data) {
 		Map<String, Object> viewData = new HashMap<String,Object>();
 		int totalCount = 0;  	
 		Map<String, Object> map = new HashMap<>();
-		
-		/* 검색 키워드 존재 시*/
-		if(data.get("keyword")!=null) {
-			String keyword = (String) data.get("keyword");
-			map.put("keyword", keyword);		
-			viewData.put("keyword", keyword);
-			totalCount  = sqlSession.getMapper(ColDao.class).selectCount(keyword); 
-		} else {
-			map.put("keyword", "");
-			totalCount  = sqlSession.getMapper(ColDao.class).selectCount(""); 
-		}		
-		if(totalCount==0) {
+
+		if(totalCount==0) {			
 			totalCount = 1;
 		}
-		
 		int numOfMsgPage = (int) data.get("numOfMsgPage");
 		int pageTotalCount = calPageTotalCount(totalCount, numOfMsgPage);
 		int pageNumber = (int) data.get("pageNumber");
@@ -79,7 +63,14 @@ public class ColServiceImpl implements ColService {
 		viewData.put("startPage", ((pageNumber - 1) / Constants.Page.NUM_OF_NAVI_PAGE) * Constants.Page.NUM_OF_NAVI_PAGE + 1);
 		viewData.put("endPage", (((pageNumber - 1) / Constants.Page.NUM_OF_NAVI_PAGE) + 1) * Constants.Page.NUM_OF_NAVI_PAGE);
 		viewData.put("msgPerPage", numOfMsgPage);	
-		viewData.put("colList", selectAllCol(map));
+		viewData.put("colList", sqlSession.getMapper(ColDao.class).selectColList(map));
+		
+		System.out.println("*******************************");
+		System.out.println("currentPage : " + pageNumber);
+		System.out.println(pageTotalCount);
+		System.out.println(numOfMsgPage);
+		System.out.println("*******************************");
+		
 		return viewData;
 	}
 

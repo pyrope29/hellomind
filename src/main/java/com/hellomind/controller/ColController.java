@@ -21,12 +21,24 @@ public class ColController {
 	BCryptPasswordEncoder passwordEncoder;
 
 	@RequestMapping("search")
-	public String col(Model model, String keyword) {
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("keyword", keyword);		
+	public String col(Model model, String page, String msgPerPage) {
+		int pageNumber = 1;	
+		if (page != null) {
+			pageNumber = Integer.parseInt(page);
+		}
 		
-		model.addAttribute("colList", colService.getColList(data));
-		model.addAttribute("keyword", keyword);
+		int numOfMsgPage = 10;
+		if (msgPerPage != null) {
+			numOfMsgPage = Integer.parseInt(msgPerPage);
+		} 
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("pageNumber", pageNumber);
+		data.put("numOfMsgPage", numOfMsgPage);
+	
+		Map<String, Object> viewData = colService.selectColList(data);
+		model.addAttribute("viewData", viewData);	
+
 		return "col/colList";
 	}
 
