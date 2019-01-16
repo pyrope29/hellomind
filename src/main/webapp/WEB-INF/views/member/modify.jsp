@@ -1,261 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <!DOCTYPE html>
-<%@ include file="/WEB-INF/views/common/public.jsp"%>  
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/common/public.jsp"%>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
-<script>
-$(function() {
-	var gender = '${gender}';
-	if(gender=='1'){
-		$('input:radio[name=gender]:input[value=1]').prop("checked", true);
-
-	} else if (gender=='2'){
-		$('input:radio[name=gender]:input[value=2]').prop("checked", true);
-	}
-	
-	$("#modifyBtn").on("click", function() {
-		
-		var parameter = JSON.stringify({'id' : $("#id").val(), 'name' :  $("#name").val(), 
-			'bdate' :  $("#bdate").val(), 'gender' : $("input[name=gender]:checked").val(), 'pnum' :  $("#pnum").val(), 
-			'zcode' :  $("#zcode").val(), 'addr' :  $("#addr").val()});
-		
-		$.ajax({
-				url : '${root}/member',
-				type : 'PUT',	
-				contentType : 'application/json;charset=UTF-8',
-				dataType : 'json',
-				data : parameter,
-				success : function (data) {
-					if(data.result == "YES"){
-						$("#infoModal").modal('show');
-						$(".msg").text('회원 수정이 완료되었습니다'); 
-					} else if (data.result == "NO"){
-						$("#errorModal").modal('show');
-						$(".msg").text('회원 수정이 실패했습니다');
-						$('#errorModal').on('hidden.bs.modal', function () {
-							location.href="${root}/member/modify.bit";
-						});
-					} 
-				},
-				 error:function(request,status,error){
-				 	console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				 	$("#errorModal").modal('show');
-					$(".msg").text('회원 수정 실패했습니다');
-					$('#errorModal').on('hidden.bs.modal', function () {
-						location.href="${root}/member/modify.bit";
-					});
-				 }
-			});
-		});
-	});	
-</script>
-<style type="text/css">
-.modal-header {
-	padding: 0;
-}
-
-.modal-content {
-	-webkit-border-radius: 15px 15px 15px 15px;
-	-moz-border-radius: 15px 15px 15px 15px;
-	border-radius: 15px 15px 15px 15px;
-	max-width: 500px;
-}
-
-.info-header {
-	height: 110px;
-	padding: 15px 29px 25px;
-	margin: 0 auto;
-	background-color: #18bc9c;
-	color: white;
-	text-align: left;
-	-webkit-border-radius: 15px 15px 0px 0px;
-	-moz-border-radius: 15px 15px 0px 0px;
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-}
-
-.info-heading {
-	margin-top: 20px;
-	margin-bottom: 15px;
-}
-
-.info-body {
-	margin: 0 15 0 15;
-	background-color: #fff;
-	-webkit-border-radius: 0px 0px 15px 15px;
-	-moz-border-radius: 0px 0px 15px 15px;
-	border-radius: 0px 0px 15px 15px;
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-}
-
-.info-btn {
-	margin-top: 20px;
-	text-align: center;
-}
-</style>
-<div class="modal fade" role="dialog" id="infoModal">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<div class="info-header">
-					<h2 class="info-heading modal-title">Info</h2>
-				</div>
-			</div>
-			<div class="modal-body info-body">
-				<h4 class="msg"></h4>
-				<div class="info-btn">
-					<button type="button" class="btn btn-default" data-dismiss="modal"
-						id="confirmBtn">확인</button>
+<div class="wrapper">
+	<div class="page-header page-header-xs" data-parallax="true"
+		style="background-image: url('${root}/resources/img/counselling1.jpg')">
+		<div class="filter"></div>
+	</div>
+	<div class="section profile-content">
+		<div class="container">
+			<%-- <div class="owner">
+				<div class="avatar">
+					<img src="${root}/resources/img/faces/joe-gardner-2.jpg"
+						alt="Circle Image"
+						class="img-circle img-no-padding img-responsive">
+				</div> --%>
+			<div class="row">
+				<div class="col-md-6 ml-auto mr-auto">		
+					<div class="name">
+					<h5 class="title" style="margin:15 0"><i class="nc-icon nc-settings-gear-65" aria-hidden="true"></i> 내 정보 수정</h5>
+					<blockquote class="blockquote" style="text-align:left">
+                        <p class="description">헬로 마인드에 가입된 내 정보를 수정할 수 있는 페이지입니다</p>
+                    </blockquote>
+                </div>
+			<br/><br/>
+					<form class="settings-form" method="post" action="${root}/member/modify">
+						<div class="row">
+							<div class="col-md-6 col-sm-6">
+								<div class="form-group">
+								 <label>아이디</label> <input type="text" class="form-control border-input" value="${mId}" readonly>
+								</div>
+							</div>
+							<div class="col-md-6 col-sm-6">
+								<div class="form-group">
+								 <label>가입일</label> <input type="text" class="form-control border-input" value="${mRegdate}" readonly>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>이메일</label> <input type="text" value="${mEmail}"
+								class="form-control border-input" placeholder="이메일을 입력해 주세요"  name="mEmail" id="mEmail">
+						</div>
+						<div class="form-group">
+							<label>전화번호</label> <input type="text" value="${mPnum}"
+								class="form-control border-input" placeholder="전화번호  (입력 예: 010-1234-5678)" name="mPnum" id="mPnum">
+						</div>
+						<br/>
+						<div class="pull-right">
+							<button type="submit" class="btn btn-info btn-round"> 수정하기</button>
+							<button type="button" class="btn btn-danger btn-round">탈퇴하기</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<style type="text/css">
-.modal-header {
-	padding: 0;
-}
-
-.modal-content {
-	-webkit-border-radius: 15px 15px 15px 15px;
-	-moz-border-radius: 15px 15px 15px 15px;
-	border-radius: 15px 15px 15px 15px;
-	max-width: 500px;
-}
-
-.error-header {
-	height: 110px;
-	padding: 15px 29px 25px;
-	margin: 0 auto;
-	background-color: #e74c3c;
-	color: white;
-	text-align: left;
-	-webkit-border-radius: 15px 15px 0px 0px;
-	-moz-border-radius: 15px 15px 0px 0px;
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-}
-
-.error-heading {
-	margin-top: 20px;
-	margin-bottom: 15px;
-}
-
-.error-footer {
-	margin: 0 auto 20px;
-	padding-left: 10px;
-}
-
-.error-body {
-	margin: 0 15 0 15;
-	background-color: #fff;
-	-webkit-border-radius: 0px 0px 15px 15px;
-	-moz-border-radius: 0px 0px 15px 15px;
-	border-radius: 0px 0px 15px 15px;
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-}
-
-.error-btn {
-	margin-top: 20px;
-	text-align: center;
-}
-</style>
-	<div class="modal fade" role="dialog" id="errorModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<div class="error-header">
-
-						<h2 class="error-heading modal-title">Error</h2>
-					</div>
-				</div>
-				<div class="modal-body error-body">
-					<h4 class="msg"></h4>
-					<p></p>
-					<div class="error-btn">
-						<button type="button" class="btn btn-default" data-dismiss="modal" id="confirmBtn">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!-- Container ======================================================================================= -->
-<div class="container">
-	<div class="row">
-	
-<!-- ★★★ Contents -->
-        <div class="col-lg-12">
-            <div class="page-header2">
-                <h3>회원정보</h3>
-            </div>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <colgroup>
-                        <col width="120">
-                        <col width="*">
-                        <col width="120">
-                        <col width="*">
-                    </colgroup>
-                    <tbody>
-                    <tr>
-                        <th class="text-center">ID</th>
-                        <td class="text-left">
-                        	<input type="text" class="form-control" name="id" id="id" placeholder="아이디" value="${id}" readonly>
-                        </td>
-                        <th class="text-center">회원명</th>
-                        <td class="text-left">
-                        	<input type="text" class="form-control" name="name" id="name" placeholder="회원명" value="${name}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center">생년월일</th>
-                        <td class="text-left">                        
-                        	<input type="text" class="form-control" name="bdate" id="bdate" placeholder="생년월일" value="${bdate}">                       	
-                        </td>
-                        <th class="text-center">성별</th>
-                        <td class="text-left">
-                        	<div class="radio">
-	                            <label>
-	                                <input type="radio" name="gender" value="1">
-	                                남자
-	                            </label>
-	                        </div>
-	                        <div class="radio">
-	                            <label>
-	                                <input type="radio" name="gender" value="2">
-	                                여자
-	                            </label>
-	                        </div>	                       	
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="text-center">전화번호</th>
-                        <td class="text-left">
-                        	<input type="text" class="form-control" name="pnum" id="pnum" placeholder="전화번호" value="${pnum}"> 	
-                        </td>
-                        <th class="text-center">주소</th>
-                        <td class="text-left">
-                        	<input type="text" class="form-control" name="zcode" id="zcode" placeholder="우편번호" value="${zcode}">	
-                        	<input type="text" class="form-control" name="addr" id="addr" placeholder="주소" value="${addr}">	
-                       	</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="pull-right">
-            	 <a href="${root}/member/modifyPw.bit" class="btn btn-success btn-default">비밀번호 변경</a>
-                <a href="#" id="modifyBtn" class="btn btn-success btn-default">저장</a>
-                <a href="${root}/member/list.bit" class="btn btn-large btn-default">목록</a>
-            </div>
-
-        </div>
-      </div><%-- 
-<%@ include file="/WEB-INF/views/include/footer.jsp"%>  --%> 
+<%@ include file="/WEB-INF/views/include/footer.jsp"%>

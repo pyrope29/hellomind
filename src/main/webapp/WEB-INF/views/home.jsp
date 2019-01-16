@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/public.jsp"%>
-<script type="text/javascript">
-$(document).ready(function(){
+<script>
+$(function(){
     $(".main-font").css("display", "none");
     $("#h1").fadeIn(400); 
     $("#h2").fadeIn(2000);
     $("#h3").fadeIn(4000);
 });
-</script>
+</script> 
+
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>   
@@ -26,4 +27,26 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
-<%@ include file="/WEB-INF/views/include/footer.jsp"%>   
+</div>
+
+
+			
+			<!--  Plugins for Slider -->
+			<script src="${root}/resources/js/nouislider.js"></script>
+			
+			<!--  Plugins for DateTimePicker -->
+			<script src="${root}/resources/js/moment.min.js"></script>
+			<script src="${root}/resources/js/bootstrap-datetimepicker.min.js"></script>
+			
+			<!--  Paper Kit Initialization snd functons -->
+			<script src="${root}/resources/js/paper-kit.js"></script>
+			
+			
+			<!-- Switches -->
+			<script src="${root}/resources/js/bootstrap-switch.min.js"></script>
+			
+				<!-- Core JS Files -->
+			<script src="${root}/resources/js/jquery-3.2.1.js" type="text/javascript"></script>
+			<script src="${root}/resources/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
+			<script src="${root}/resources/js/popper.js" type="text/javascript"></script>
+			<script src="${root}/resources/js/bootstrap.min.js" type="text/javascript"></script>

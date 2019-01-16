@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/public.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 </head>
 <body>
-
     <div class="wrapper">
         <div class="page-header" style="background-image: url('${root}/resources/img/counselling1.jpg');">
             <div class="filter"></div>
@@ -26,12 +23,11 @@
                                		 <input class="btn btn-outline-danger btn-round" style="width:150px; margin:0" value="회원가입" onclick="location.href='${root}/member/join'">&nbsp;&nbsp;
                                		 <input class="btn btn-default btn-round" style="width:150px; margin:0" onclick="location.href='${root}/member/findPw'"value="비밀번호 찾기">
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
-                </div>
-        </div>
-    </div>
+           	  </div>
+     	  </div>
+   	 </div>
 </body>
 </html>

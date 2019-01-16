@@ -66,12 +66,8 @@ public class MemberController {
 		
 		// 비밀번호 암호화
 		memberDto.setmPw(passwordEncoder.encode(param.get("mPw")));
-/*
-		memberDto.setmPw(param.get("mPw"));*/
 		memberDto.setmPnum(param.get("mPnum"));
 		memberDto.setmEmail(param.get("mEmail"));
-
-		System.out.println(memberDto.toString());
 
 		if (0 < memberService.insertMember(memberDto)) {
 			model.addAttribute("msg", "회원가입 완료");
@@ -126,8 +122,8 @@ public class MemberController {
 	}
 
 	/* 내정보 확인, 수정 */
-	@RequestMapping(value = "mypage", method = RequestMethod.GET)
-	public String mypage(HttpSession session, Model model) {
+	@RequestMapping(value = "modify", method = RequestMethod.GET)
+	public String modify(HttpSession session, Model model) {
 		
 		MemberDto member = memberService.selectMember((String) session.getAttribute("userId"));
 		
@@ -139,31 +135,29 @@ public class MemberController {
 		model.addAttribute("mRegdate", member.getmRegdate());
 		model.addAttribute("mPw", member.getmPw());
 		
-		return "member/mypage";
+		return "member/modify";
 	}
 
-	@RequestMapping(method = RequestMethod.PUT)
-	public @ResponseBody String modifyMember(@RequestBody MemberDto memberDto, HttpSession session, Model model,
+	@RequestMapping(method = RequestMethod.POST, value="modify")
+	public String modifyMember(@RequestParam Map<String, String> param, HttpSession session, Model model,
 			HttpServletRequest request) {
+		MemberDto member = memberService.selectMember((String) session.getAttribute("mId"));
+	
+		member.setmEmail(param.get("mEmail"));
+		member.setmPnum(param.get("mPnum"));
 		
-		System.out.println("나오냐");
-			
-		System.out.println("memberDto :" + memberDto);
-		model.addAttribute("msg", "회원수정이 완료되었습니다");
-		model.addAttribute("url", "member/mypage");
-		return "common/info";
-	}
+		System.out.println("수정하려는 멤버" + member.toString());
 		
-		/*MemberDto member = (MemberDto) session.getAttribute("userId");
-		memberDto.setmPw(member.getmPw());
-		if (0 < memberService.updateMember(memberDto)) {
-			System.out.println( "회원수정이 완료되었습니다");
-			return "{\"result\" : \"YES\" }" ;
+		if( 0 < memberService.updateMember(member)) {
+			model.addAttribute("msg", "회원수정이 완료되었습니다");
+			model.addAttribute("url", "modify");
+			return "common/info";
 		} else {
-			System.out.println( "회원수정이 실패했습니다");
-			return "{\"result\" : \"NO\" }" ;
+			model.addAttribute("msg", "회원수정이 실패했습니다");
+			model.addAttribute("url", "modify");
+			return "common/error";
 		}
-	*/
+	}
 	
 	
 /*	

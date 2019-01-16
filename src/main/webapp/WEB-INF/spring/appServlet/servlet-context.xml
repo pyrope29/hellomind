@@ -21,18 +21,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<mvc:annotation-driven> <!-- json 한글깨짐 방지 -->
-	 <mvc:message-converters>
-	   <beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
-	     <beans:property name="supportedMediaTypes">
-	       <beans:list>
-	         <beans:value>text/html;charset=utf-8</beans:value>
-	         <beans:value>application/json;charset=utf-8</beans:value>
-	       </beans:list>
-	     </beans:property>
-	   </beans:bean>
-	 </mvc:message-converters>
-	</mvc:annotation-driven>
 	
 	<mvc:interceptors>
     <mvc:interceptor>
@@ -42,6 +30,7 @@
       <mvc:exclude-mapping path="/member/join"/>  
       <mvc:exclude-mapping path="/css/**"/>
       <mvc:exclude-mapping path="/js/**"/>
+      <mvc:exclude-mapping path="/resources/**"/>
       <bean class="com.hellomind.interceptor.HandlerInterceptor" />
     </mvc:interceptor>
    </mvc:interceptors>  

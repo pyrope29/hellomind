@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="500">
 <%@ include file="/WEB-INF/views/common/public.jsp"%>
-		
+<nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="500">
 	<div class="container">
 		<div class="navbar-translate">
 			<button class="navbar-toggler navbar-toggler-right navbar-burger"
@@ -34,22 +33,12 @@
 					<ul class="dropdown-menu dropdown-menu-right dropdown-danger">
 						<li class="dropdown-header" href="#pk">My Mind</li>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="${root}/member/mypage">내 정보</a>
+						<a class="dropdown-item" href="${root}/member/modify">내 정보</a>
 						<a class="dropdown-item" href="#pk">예약 내역</a>
 						<a class="dropdown-item" href="#pk">상담 내역</a>
 					</ul>
 				</div>
-				<%-- <div class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="${root}/col/colList" role="button" aria-haspopup="true"
-						aria-expanded="true">Mind Note</a>
-					<ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-						<li class="dropdown-header" href="#pk">Mind Note</li>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#pk">고민 작성</a>
-						<a class="dropdown-item" href="#pk">내 고민 보기</a>
-						<a class="dropdown-item" href="#pk">내 히스토리</a>
-					</ul>
-				</div> --%>
+				
 				<c:if test="${userId==null}">
 					<li class="nav-item"><a class="nav-link"
 						href="${root}/member/login">&nbsp;&nbsp;&nbsp;&nbsp; <i
