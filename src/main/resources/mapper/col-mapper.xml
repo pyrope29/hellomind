@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hellomind.dao.ColDao">
+	<insert id="insertCol" parameterType="colDto">
+		INSERT INTO COL (CID,CNAME,CPW,CEMAIL,CPNUM,CERT,CSTATS,CREGDATE) 
+ 			VALUES (#{cId},#{cName},#{cPw},#{cEmail},#{cPnum},#{cert},'0',NOW())
+	</insert>
+	<update id="updateCol" parameterType="colDto">
+		UPDATE COL 
+			SET CNAME=#{cName},CPW=#{cPw},CEMAIL=#{cEmail},CPNUM=#{cPnum},CERT=#{cert} 
+				WHERE CID=#{cId}
+	</update>
+	<update id="updateCStats" parameterType="String">
+		UPDATE COL
+			SET CSTATS=#{cStats}
+				WHERE CID=#{cId}
+	</update>
+	<select id="selectCol" parameterType="String" resultType="colDto">
+		SELECT * FROM COL 
+			WHERE CID=#{cId}
+	</select>
+	<select id="selectAllCol" parameterType="Map" resultType="ColDto">
+		SELECT SQL_CALC_FOUND_ROWS CID, CNAME, CEMAIL, CPNUM 
+			FROM COL 
+				WHERE CID LIKE CONCAT('%',#{keyword},'%') 
+					ORDER BY CID DESC
+				LIMIT #{NUM_OF_MSG_PER_PAGE}
+				OFFSET #{START_ROW}
+	</select>
+	<select id="getColList" parameterType="Map" resultType="Map">
+		SELECT SQL_CALC_FOUND_ROWS CID, CNAME, CEMAIL, CPNUM 
+			FROM COL 
+				WHERE CID LIKE CONCAT('%',#{keyword},'%') 
+					ORDER BY CID DESC
+				LIMIT #{NUM_OF_MSG_PER_PAGE}
+				OFFSET #{START_ROW}
+	</select>
+	<select id="selectCount" parameterType="String">
+		SELECT COUNT(*)
+			FROM COL
+				WHERE CID LIKE CONCAT('%',#{keyword},'%')
+	</select>
+</mapper>

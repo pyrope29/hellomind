@@ -21,19 +21,19 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	
-	<mvc:interceptors>
-    <mvc:interceptor>
-      <mvc:mapping path="/**"/>
-      <mvc:exclude-mapping path="/"/>
-      <mvc:exclude-mapping path="/member/login"/>
-      <mvc:exclude-mapping path="/member/join"/>  
-      <mvc:exclude-mapping path="/css/**"/>
-      <mvc:exclude-mapping path="/js/**"/>
-      <mvc:exclude-mapping path="/resources/**"/>
-      <bean class="com.hellomind.interceptor.HandlerInterceptor" />
-    </mvc:interceptor>
-   </mvc:interceptors>  
+
+<mvc:interceptors>
+	<mvc:interceptor>
+	<mvc:mapping path="/**"/>
+	<mvc:exclude-mapping path="/"/>
+	<mvc:exclude-mapping path="/member/login"/>
+	<mvc:exclude-mapping path="/member/join"/>  
+	<mvc:exclude-mapping path="/css/**"/>
+	<mvc:exclude-mapping path="/js/**"/>
+	<mvc:exclude-mapping path="/resources/**"/>
+	<bean class="com.hellomind.interceptor.HandlerInterceptor" />
+	</mvc:interceptor>
+</mvc:interceptors>  
 	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 	

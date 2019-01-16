@@ -17,12 +17,12 @@
 		<div class="collapse navbar-collapse" id="navbarToggler">
 			<ul class="navbar-nav ml-auto">
 				<div class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="${root}/col/colList" role="button" aria-haspopup="true"
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="true">Counselling</a>
 					<ul class="dropdown-menu dropdown-menu-right dropdown-danger">
-						<li class="dropdown-header" href="#pk">councelling</li>
+						<li class="dropdown-header">councelling</li>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#pk">상담하기</a>
+						<a class="dropdown-item" href="${root}/col/search">상담하기</a>
 						<a class="dropdown-item" href="#pk">이용권 구매하기</a>
 						<a class="dropdown-item" href="#pk">상담사 지원하기</a>
 					</ul>
@@ -39,12 +39,12 @@
 					</ul>
 				</div>
 				
-				<c:if test="${userId==null}">
+				<c:if test="${userInfo==null}">
 					<li class="nav-item"><a class="nav-link"
 						href="${root}/member/login">&nbsp;&nbsp;&nbsp;&nbsp; <i
 							class="nc-icon nc-single-02" aria-hidden="true"></i>Login</a></li>
 				</c:if>
-				<c:if test="${userId!=null}">
+				<c:if test="${userInfo!=null}">
 					<li class="nav-item"><a class="nav-link"
 						href="${root}/member/logout">&nbsp;&nbsp;&nbsp;&nbsp; <i
 							class="nc-icon nc-user-run" aria-hidden="true"></i>Logout</a></li>

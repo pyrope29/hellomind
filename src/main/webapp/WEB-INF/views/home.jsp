@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/public.jsp"%>
+<!-- 위의 import부터 %>까지 지우기 -->
+<%-- <%
+ MemberDto memberDto = new MemberDto();
+memberDto.setmId("1111");
+memberDto.setmPw("$2a$10$IwCqf5BKNEUfQKsB1eKxYuieK4eqQ2/X/j3FJmhDkgBR7XMnqfajq");
+memberDto.setmEmail("test@dqwd.com");
+memberDto.setmPnum("010-3123-1234");
+memberDto.setmStats("0");
+memberDto.setmRegdate("2019-01-16 14:16:08");
+session.setAttribute("userInfo", memberDto); 
+%> --%>
+
 <script>
 $(function(){
     $(".main-font").css("display", "none");
@@ -27,26 +39,10 @@ $(function(){
 			</div>
 		</div>
 	</div>
-</div>
+
+<%@ include file="/WEB-INF/views/include/footer.jsp"%>   
 
 
-			
-			<!--  Plugins for Slider -->
-			<script src="${root}/resources/js/nouislider.js"></script>
-			
-			<!--  Plugins for DateTimePicker -->
-			<script src="${root}/resources/js/moment.min.js"></script>
-			<script src="${root}/resources/js/bootstrap-datetimepicker.min.js"></script>
-			
-			<!--  Paper Kit Initialization snd functons -->
-			<script src="${root}/resources/js/paper-kit.js"></script>
+
 			
 			
-			<!-- Switches -->
-			<script src="${root}/resources/js/bootstrap-switch.min.js"></script>
-			
-				<!-- Core JS Files -->
-			<script src="${root}/resources/js/jquery-3.2.1.js" type="text/javascript"></script>
-			<script src="${root}/resources/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
-			<script src="${root}/resources/js/popper.js" type="text/javascript"></script>
-			<script src="${root}/resources/js/bootstrap.min.js" type="text/javascript"></script>

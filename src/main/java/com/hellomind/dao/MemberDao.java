@@ -13,6 +13,6 @@ public interface MemberDao {
 
 	List<MemberDto> selectAllMember();
 
-	int deleteMember(String mId);
+	int updateMStats(String mId);
 
 }

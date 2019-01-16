@@ -13,7 +13,7 @@ public interface MemberService {
 
 	int updateMember(MemberDto memberDto);
 	
-	int deleteMember(String mid);
+	int updateMStats(String mid);
 
 	MemberDto selectMember(String mid);
 

@@ -26,7 +26,6 @@ import com.hellomind.service.MemberService;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -82,9 +81,9 @@ public class MemberController {
 	
 		String id = param.get("mId");
 		String pw = param.get("mPw");
-		System.out.println("로그인 포스트 요청" + id + "\n" + pw);
+		System.out.println("로그인 요청 id : " + id + "\npw:" + pw);
 		
-		 MemberDto memberDto = memberService.selectMember(id);	
+	   MemberDto memberDto = memberService.selectMember(id);	
 	
 		System.out.println("rawPw : " + pw);
 		System.out.println("getPw : " + memberDto.getmPw());
@@ -97,7 +96,6 @@ public class MemberController {
 			}
 			if (passwordEncoder.matches(pw, memberDto.getmPw())) {
 			/* if(pw.equals(memberDto.getmPw())) { */
-				session.setAttribute("userId", id);
 				model.addAttribute("msg", id + " 님 환영합니다");
 				session.setAttribute("userInfo", memberDto);
 				model.addAttribute("url", "/");
@@ -117,7 +115,7 @@ public class MemberController {
 		
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
-		session.removeAttribute("userId");
+		session.removeAttribute("userInfo");
 		return "redirect:/";
 	}
 
@@ -125,15 +123,13 @@ public class MemberController {
 	@RequestMapping(value = "modify", method = RequestMethod.GET)
 	public String modify(HttpSession session, Model model) {
 		
-		MemberDto member = memberService.selectMember((String) session.getAttribute("userId"));
+		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+		System.out.println("수정하려는 멤버" + memberDto.toString());
 		
-		System.out.println(member);
-		
-		model.addAttribute("mId", member.getmId());
-		model.addAttribute("mPnum", member.getmPnum());
-		model.addAttribute("mEmail", member.getmEmail());
-		model.addAttribute("mRegdate", member.getmRegdate());
-		model.addAttribute("mPw", member.getmPw());
+		model.addAttribute("mId", memberDto.getmId());
+		model.addAttribute("mPnum", memberDto.getmPnum());
+		model.addAttribute("mEmail", memberDto.getmEmail());
+		model.addAttribute("mRegdate", memberDto.getmRegdate());
 		
 		return "member/modify";
 	}
@@ -141,20 +137,44 @@ public class MemberController {
 	@RequestMapping(method = RequestMethod.POST, value="modify")
 	public String modifyMember(@RequestParam Map<String, String> param, HttpSession session, Model model,
 			HttpServletRequest request) {
-		MemberDto member = memberService.selectMember((String) session.getAttribute("mId"));
-	
-		member.setmEmail(param.get("mEmail"));
-		member.setmPnum(param.get("mPnum"));
+		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
 		
-		System.out.println("수정하려는 멤버" + member.toString());
+		memberDto.setmEmail(param.get("mEmail"));
+		memberDto.setmPnum(param.get("mPnum"));
 		
-		if( 0 < memberService.updateMember(member)) {
+		if( 0 < memberService.updateMember(memberDto)) {
 			model.addAttribute("msg", "회원수정이 완료되었습니다");
 			model.addAttribute("url", "modify");
 			return "common/info";
 		} else {
 			model.addAttribute("msg", "회원수정이 실패했습니다");
 			model.addAttribute("url", "modify");
+			return "common/error";
+		}
+	}
+	
+	@RequestMapping(value = "modifyPw", method = RequestMethod.GET)
+	public String modifyPw(HttpSession session, Model model) {
+		
+		MemberDto memberDto = (MemberDto)session.getAttribute("userInfo");
+		model.addAttribute("mPw", memberDto.getmPw());
+		return "member/modifyPw";
+	}
+	
+
+	@RequestMapping(method = RequestMethod.POST, value="modifyPw")
+	public String modifyPw(@RequestParam Map<String, String> param, HttpSession session, Model model,
+			HttpServletRequest request) {
+		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
+		memberDto.setmPw(passwordEncoder.encode(param.get("mPw")));
+		
+		if(0 < memberService.updateMember(memberDto)) {
+			model.addAttribute("msg", "비밀번호 수정이 완료되었습니다");
+			model.addAttribute("url", "modifyPw");
+			return "common/info";
+		} else {
+			model.addAttribute("msg", "비밀번호 수정이 실패했습니다");
+			model.addAttribute("url", "modifyPw");
 			return "common/error";
 		}
 	}

@@ -38,8 +38,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int deleteMember(String mId) {
-		return sqlSession.getMapper(MemberDao.class).deleteMember(mId);
+	public int updateMStats(String mId) {
+		return sqlSession.getMapper(MemberDao.class).updateMStats(mId);
 	}
 
 /*	@Override

@@ -9,7 +9,7 @@
 	</insert>
 	<update id="updateMember" parameterType="memberDto">
 		UPDATE MEMBER 
-			SET MEMAIL=#{mEmail},MPW=#{mPw},MPNUM=#{mPnum},MSTATS=#{mStats},MREGDATE=#{mRegdate} 
+			SET MEMAIL=#{mEmail},MPW=#{mPw},MPNUM=#{mPnum} 
 				WHERE MID=#{mId}
 	</update>
 	<select id="selectMember" parameterType="String" resultType="memberDto">
@@ -19,9 +19,9 @@
 	<select id="selectAllMember" resultType="memberDto">
 		SELECT * FROM MEMBER
 	</select>
-	<update id="deleteMember" parameterType="String">
+	<update id="updateMStats" parameterType="String">
 		UPDATE MEMBER
-			SET MSTATS='2' 
+			SET MSTATS=#{mStats}
 				WHERE MID=#{mId}
 	</update>
 </mapper>

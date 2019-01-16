@@ -5,7 +5,6 @@
 <div class="wrapper">
 	<div class="page-header page-header-xs" data-parallax="true"
 		style="background-image: url('${root}/resources/img/counselling1.jpg')">
-		<div class="filter"></div>
 	</div>
 	<div class="section profile-content">
 		<div class="container">
@@ -48,7 +47,7 @@
 						<br/>
 						<div class="pull-right">
 							<button type="submit" class="btn btn-info btn-round"> 수정하기</button>
-							<button type="button" class="btn btn-danger btn-round">탈퇴하기</button>
+							<button type="button" onclick="location.href='${root}/member/modifyPw'" class="btn btn-primary btn-round">비밀번호 수정하기</button>
 						</div>
 					</form>
 				</div>
