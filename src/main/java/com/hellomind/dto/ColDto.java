@@ -5,6 +5,7 @@ public class ColDto {
 	private String cId; // 아이디
 	private String cName; // 이름
 	private String cPw; // 비밀번호
+	private String cLv; // 1급 2급 예비상담사
 	private String cEmail; // 이메일
 	private String cPnum; // 전화번호
 	private String cert; // 자격증 파일
@@ -33,6 +34,14 @@ public class ColDto {
 
 	public void setcPw(String cPw) {
 		this.cPw = cPw;
+	}
+
+	public String getcLv() {
+		return cLv;
+	}
+
+	public void setcLv(String cLv) {
+		this.cLv = cLv;
 	}
 
 	public String getcEmail() {
@@ -77,7 +86,8 @@ public class ColDto {
 
 	@Override
 	public String toString() {
-		return "ColDto [cId=" + cId + ", cName=" + cName + ", cPw=" + cPw + ", cEmail=" + cEmail + ", cPnum=" + cPnum
-				+ ", cert=" + cert + ", cStats=" + cStats + ", cRegdate=" + cRegdate + "]";
-	} 
+		return "ColDto [cId=" + cId + ", cName=" + cName + ", cPw=" + cPw + ", cLv=" + cLv + ", cEmail=" + cEmail
+				+ ", cPnum=" + cPnum + ", cert=" + cert + ", cStats=" + cStats + ", cRegdate=" + cRegdate + "]";
+	}
+
 }

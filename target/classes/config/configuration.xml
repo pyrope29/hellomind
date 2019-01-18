@@ -10,8 +10,8 @@
 		<typeAlias alias="categoryDto" type="com.bit.board.admin.model.CategoryDto"/>
 		<typeAlias alias="albumDto" type="com.bit.board.model.AlbumDto"/>
 		<typeAlias alias="bbsDto" type="com.bit.board.model.BbsDto"/>
-		<typeAlias alias="boardDto" type="com.bit.board.model.BoardDto"/>
-		<typeAlias alias="reboardDto" type="com.bit.board.model.ReboardDto"/>  -->
+		<typeAlias alias="boardDto" type="com.bit.board.model.BoardDto"/>  -->
+		<typeAlias alias="schdDto" type="com.hellomind.dto.SchdDto"/>
 		<typeAlias alias="colDto" type="com.hellomind.dto.ColDto"/>
 		<typeAlias alias="memberDto" type="com.hellomind.dto.MemberDto"/>
 	</typeAliases>

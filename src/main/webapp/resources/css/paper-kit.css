@@ -298,6 +298,10 @@ a:focus, a:active, button::-moz-focus-inner, input[type="reset"]::-moz-focus-inn
 	font-weight: 600;
 }
 
+.bg-white {
+	background-color: white !important;
+}
+
 .bg-primary {
 	background-color: #6dd3d6 !important;
 }
@@ -2401,7 +2405,7 @@ textarea.form-control {
 }
 
 .navbar-transparent .navbar-brand, [class*="bg"] .navbar-brand {
-	color: #463c3c;
+	color: black;
 	opacity: 0.9;
 	filter: alpha(opacity = 90);
 }
@@ -4377,7 +4381,7 @@ px
 /*             Navigation Tabs                 */
 .nav-tabs-navigation {
 	text-align: center;
-	border-bottom: 1px solid #F1EAE0;
+	border-bottom: 3px solid white;
 	margin-bottom: 30px;
 }
 
@@ -6780,7 +6784,7 @@ important
 
 .bootstrap-datetimepicker-widget.dropdown-menu {
 	padding: 4px;
-	width: 16em;
+	width: 40em;
 }
 
 @media ( min-width : 768px) {
@@ -7423,10 +7427,6 @@ important
 	text-align: center;
 }
 
-/* .register-card .btn {
-	margin-top: 30px;
-}
- */
 .register-card .forgot {
 	text-align: center;
 }

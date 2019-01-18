@@ -3,12 +3,12 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hellomind.dao.ColDao">
 	<insert id="insertCol" parameterType="colDto">
-		INSERT INTO COL (CID,CNAME,CPW,CEMAIL,CPNUM,CERT,CSTATS,CREGDATE) 
- 			VALUES (#{cId},#{cName},#{cPw},#{cEmail},#{cPnum},#{cert},'0',NOW())
+		INSERT INTO COL (CID,CNAME,CPW,CLV,CEMAIL,CPNUM,CERT,CSTATS,CREGDATE) 
+ 			VALUES (#{cId},#{cName},#{cPw},#{cLv},#{cEmail},#{cPnum},#{cert},'0',NOW())
 	</insert>
 	<update id="updateCol" parameterType="colDto">
 		UPDATE COL 
-			SET CNAME=#{cName},CPW=#{cPw},CEMAIL=#{cEmail},CPNUM=#{cPnum},CERT=#{cert} 
+			SET CNAME=#{cName},CPW=#{cPw},CLV=#{cLv},CEMAIL=#{cEmail},CPNUM=#{cPnum},CERT=#{cert} 
 				WHERE CID=#{cId}
 	</update>
 	<update id="updateCStats" parameterType="String">
@@ -20,8 +20,8 @@
 		SELECT * FROM COL 
 			WHERE CID=#{cId}
 	</select>
-	<select id="selectColList" parameterType="Map" resultType="ColDto">
-		SELECT SQL_CALC_FOUND_ROWS CID, CNAME, CEMAIL, CPNUM 
+	<select id="selectColList"  parameterType="Map" resultType="colDto">
+		SELECT SQL_CALC_FOUND_ROWS CID, CNAME, CLV, CEMAIL  
 			FROM COL 
 				ORDER BY CREGDATE DESC
 					LIMIT #{NUM_OF_MSG_PER_PAGE}

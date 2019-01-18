@@ -12,15 +12,6 @@ memberDto.setmRegdate("2019-01-16 14:16:08");
 session.setAttribute("userInfo", memberDto); 
 %> --%>
 
-<script>
-$(function(){
-    $(".main-font").css("display", "none");
-    $("#h1").fadeIn(400); 
-    $("#h2").fadeIn(2000);
-    $("#h3").fadeIn(4000);
-});
-</script> 
-
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>   
@@ -41,4 +32,11 @@ $(function(){
 	</div>
 
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>   
-
+<script>
+$(function(){
+    $(".main-font").css("display", "none");
+    $("#h1").fadeIn(400); 
+    $("#h2").fadeIn(2000);
+    $("#h3").fadeIn(4000);
+});
+</script> 

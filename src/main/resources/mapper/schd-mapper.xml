@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hellomind.dao.SchdDao">
+	<insert id="insertSchd" parameterType="schdDto">
+		INSERT INTO SCHD (SCHDDATE,CID) 
+			VALUES(#{schdDate}, #{cId})
+	</insert>
+	<select id="selectSchd"  parameterType="String" resultType="String">
+		SELECT DATE_FORMAT(schddate, '%Y-%m-%d %H:%i:%s') 
+			FROM SCHD 
+				WHERE (SCHDDATE BETWEEN NOW() AND NOW()+INTERVAL 14 DAY) 
+					AND CID = #{cId}
+	</select>
+</mapper>

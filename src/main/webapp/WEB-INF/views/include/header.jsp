@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/public.jsp"%>
-<nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="500">
+<nav class="navbar navbar-expand-md fixed-top navbar-transparent nav-no-padding" color-on-scroll="500">
 	<div class="container">
 		<div class="navbar-translate">
 			<button class="navbar-toggler navbar-toggler-right navbar-burger"
@@ -24,7 +24,7 @@
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="${root}/col/search">상담하기</a>
 						<a class="dropdown-item" href="#pk">이용권 구매하기</a>
-						<a class="dropdown-item" href="#pk">상담사 지원하기</a>
+						<a class="dropdown-item" href="${root}/col">상담사 지원하기</a>
 					</ul>
 				</div>
 				<div class="nav-item dropdown">

@@ -2,8 +2,8 @@ package com.hellomind.dto;
 
 public class SchdDto {
 	private int schdNum; // 일정가능번호
-	private int cId; // 상담사번호
-	private String schDate; // 상담일정이 가능한 시간
+	private String cId; // 상담사번호
+	private String schdDate; // 상담일정이 가능한 시간
 
 	public int getschdNum() {
 		return schdNum;
@@ -13,25 +13,25 @@ public class SchdDto {
 		this.schdNum = schdNum;
 	}
 
-	public String getschDate() {
-		return schDate;
+	public String getschdDate() {
+		return schdDate;
 	}
 
-	public void setschDate(String schDate) {
-		this.schDate = schDate;
+	public void setschdDate(String schdDate) {
+		this.schdDate = schdDate;
 	}
 
-	public int getcId() {
+	public String getcId() {
 		return cId;
 	}
 
-	public void setcId(int cId) {
+	public void setcId(String cId) {
 		this.cId = cId;
 	}
 
 	@Override
 	public String toString() {
-		return "SchdDto [schdNum=" + schdNum + ", cId=" + cId + ", schDate=" + schDate + "]";
+		return "SchdDto [schdNum=" + schdNum + ", cId=" + cId + ", schdDate=" + schdDate + "]";
 	}
 
 }
