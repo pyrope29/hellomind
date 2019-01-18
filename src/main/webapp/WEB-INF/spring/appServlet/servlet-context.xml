@@ -50,7 +50,7 @@
 		<mvc:exclude-mapping path="/col/login"/>
 		<mvc:exclude-mapping path="/col/search"/>
 		<mvc:exclude-mapping path="/col/viewColDet"/>
-		<mvc:exclude-mapping path="/col/regist"/>
+		<mvc:exclude-mapping path="/col/search"/>
 		<bean class="com.hellomind.interceptor.ColHandlerInterceptor" />
 	</mvc:interceptor>
 </mvc:interceptors> 

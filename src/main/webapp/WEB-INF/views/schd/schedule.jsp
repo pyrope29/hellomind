@@ -43,7 +43,7 @@
 	font-size: 3em;
 }
 
-.time-list {
+.time-list .form-check {
 	margin-left: 30px;
 }
 
@@ -78,127 +78,24 @@
 					</div>
 					<br />
 					<br />
-					<%-- 				<c:if test="${schdNum==null}">
-					<div class="col-md-12">
-						<div class="tim-title">
-							<h5>안내 사항</h5>
-						</div>
-						<ul>
-							<li>원활한 상담을 위해 시간을 준수해 주세요</li>
-							<li>채팅 내용은 절대 기록되지 않습니다.</li>
-						</ul>
-					</div>
-				</c:if>
-				<c:if test="${schdNum=!null}"> --%>
-					<!-- <div class="schedule-info">
-							<h5>안내 사항</h5>
-						<ul>
-							<li>원활한 상담을 위해 시간을 준수해 주세요</li>
-							<li>채팅 내용은 절대 기록되지 않습니다.</li>
-						</ul>
-					</div> -->
-					
 					<div class="container time-list">
-						<p>시간을 선택해 주세요</p><br/>
-						<div class="row">
-						 	<div class="form-check col-md-4">
-	                               <label class="form-check-label">
-	                                   <input class="form-check-input" name="time" type="checkbox" value="09:00:00">
-	                                   AM 09:00 ~ 09:50
-	                                   <span class="form-check-sign"></span>
-	                               </label>
-	                         </div>
-	                         <div class="form-check col-md-4">
-	                                <label class="form-check-label">
-	                                    <input class="form-check-input" name="time" type="checkbox" value="10:00:00">
-	                                    AM 10:00 ~ 10:50
-	                                    <span class="form-check-sign"></span>
-	                                </label>
-	                            </div>
-	                         <div class="form-check col-md-4">
-	                                <label class="form-check-label">
-	                                    <input class="form-check-input" name="time" type="checkbox" value="11:00:00">
-	                                    AM 11:00 ~ 11:50
-	                                    <span class="form-check-sign"></span>
-	                                </label>
-	                            </div>
-                          </div>
-						<div class="row">
-						 	<div class="form-check col-md-4">
-	                               <label class="form-check-label">
-	                                   <input class="form-check-input" name="time" type="checkbox" value="12:00:00">
-	                                   PM 12:00 ~ 12:50
-	                                   <span class="form-check-sign"></span>
-	                               </label>
-	                         </div>
-	                         <div class="form-check col-md-4">
-	                                <label class="form-check-label">
-	                                    <input class="form-check-input" name="time" type="checkbox" value="13:00:00">
-	                                    PM 13:00 ~ 13:50
-	                                    <span class="form-check-sign"></span>
-	                                </label>
-	                            </div>
-	                         <div class="form-check col-md-4">
-	                                <label class="form-check-label">
-	                                    <input class="form-check-input" name="time" type="checkbox" value="14:00:00">
-	                                    PM 14:00 ~ 14:50
-	                                    <span class="form-check-sign"></span>
-	                                </label>
-	                            </div>
-                          </div><div class="row">
-						 	<div class="form-check col-md-4">
-	                               <label class="form-check-label">
-	                                   <input class="form-check-input" name="time" type="checkbox" value="15:00:00">
-	                                   PM 15:00 ~ 15:50
-	                                   <span class="form-check-sign"></span>
-	                               </label>
-	                         </div>
-	                         <div class="form-check col-md-4">
-	                                <label class="form-check-label">
-	                                    <input class="form-check-input" name="time" type="checkbox" value="16:00:00">
-	                                    PM 16:00 ~ 16:50
-	                                    <span class="form-check-sign"></span>
-	                                </label>
-	                            </div>
-	                         <div class="form-check col-md-4">
-	                                <label class="form-check-label">
-	                                    <input class="form-check-input" name="time" type="checkbox" value="17:00:00">
-	                                    PM 17:00 ~ 17:50
-	                                    <span class="form-check-sign"></span>
-	                                </label>
-	                            </div>
-                          </div>
-                            <div class="row">
-						 	<div class="form-check col-md-4">
-	                               <label class="form-check-label">
-	                                   <input class="form-check-input" name="time" type="checkbox" value="18:00:00">
-	                                   PM 18:00 ~ 18:50
-	                                   <span class="form-check-sign"></span>
-	                               </label>
-	                         </div>
-	                         <div class="form-check col-md-4">
-	                                <label class="form-check-label">
-	                                    <input class="form-check-input" name="time" type="checkbox" value="19:00:00">
-	                                    PM 19:00 ~ 19:50
-	                                    <span class="form-check-sign"></span>
-	                                </label>
-	                            </div>
-	                         <div class="form-check col-md-4">
-	                                <label class="form-check-label">
-	                                    <input class="form-check-input" name="time" type="checkbox" value="20:00:00">
-	                                    PM 20:00 ~ 20:50
-	                                    <span class="form-check-sign"></span>
-	                                </label>
-	                            </div>
-                          </div>        
-					</div>
-						<br />
-						<button type="button" onclick="dateTimeFunc();"
-							class="btn btn-lg btn-warning btn-round pull-right">예약 완료
-						</button>
+						<p>시간을 선택해 주세요</p>
+						<c:forEach begin="12" end="21" var="i">
+	                         <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" name="time" type="checkbox" value="${i}:00:00">
+                                     ${i} : 00 ~ ${i} : 50
+                                    <span class="form-check-sign"></span>
+                                </label>
+	                          </div>
+	                    </c:forEach>
+							<button type="button" onclick="dateTimeFunc();"
+								class="btn btn-lg btn-warning btn-round pull-right">예약 완료
+							</button>
 					</div>
 				</div>
 			</div>
+		</div>
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -210,36 +107,21 @@
 	
 	function toJavascript(){
 	    var array="${availableDates}";
-	    array=array.replace("[", "");
-	    array=array.replace("]", "");
-	    return array.split(",");
+	    array=array.replace("[", "").replace("]", "");
+	    
+	    var temp = new Array();
+		temp = array.split(",");
+	
+		var avail = [];
+	    for(var i = 0; i < temp.length; i++){
+		    avail.push(temp[i].trim());
+	    }
+	    return avail;
 	}
-		$(function() {		/* availableTime */
-			/* var avail = [];
-			avail.push("111");
-			avail.push("222");
-			console.log(avail);
-	 		alert( "${availableDates}");
-	 		console.log(availableDates); */
-	 		
-	 		/* console.log();
-	 		var availableDates = ["2019-01-18","2019-01-25"];
-	 		console.log(availableDates);
-	 		 
-
-	 		var avail = [];
-	 		
-	 		 for ( var i in toJavascript() ) {
-	 	        avail.push(toJavascript()[i]);
-	 	        console.log(avail);
-	 	      }
-	 		 
-	 		var availableDates = avail;
-	 		*/
-	 		
-	 		var availableDates = ["2019-01-18","2019-01-25","2019-01-29"];
-	 		
-	 		
+		$(function() {		/* datePicker */
+			console.log(toJavascript());
+	 		var availableDates = toJavascript();
+		
 			$.datepicker.setDefaults({
 				monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7', '8',
 						'9', '10', '11', '12' ] //달력의 월 부분 텍스트
@@ -285,11 +167,8 @@
 				beforeShowDay : available
 			});
 		});
-
+ 
 		$('#datepicker').change(function() {
-			$('#datepicker').datepicker({
-				altField : "#alternate"
-			});
+			window.location.reload();
 		});
-
 </script>

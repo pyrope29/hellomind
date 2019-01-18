@@ -109,13 +109,13 @@
 						</div>	
 						<div class="col-md-9">
 							<div class="col-name row">
-								<div class="col-md-4"><h4 style="margin:10 0; text-align:center;">이주영</h4></div>
+								<div class="col-md-4"><h4 style="margin:10 0; text-align:center;">김선주</h4></div>
 								<btn class="btn-col col-md-2 btn-round">
 								<i class="nc-icon nc-favourite-28" aria-hidden="true"></i>&nbsp;&nbsp;후기
 									25 &nbsp;&nbsp;</btn>  &nbsp;&nbsp;
 									<btn class="btn-info btn-round col-md-2 btn-col">더보기</btn>
 							</div>
-							<h6 style="color:red; margin: 10 0 0 30;">2급 상담사</h6><br/>
+							<h6 style="color:red; margin: 10 0 0 30;">예비 상담사</h6><br/>
 								<div class="col-md-12">
 									<p>An artist of considerable range, Jane Faker — the name
 										taken by Melbourne-raised, Brooklyn-ba Faker — the name taken by
@@ -130,13 +130,13 @@
 						</div>	
 						<div class="col-md-9">
 							<div class="col-name row">
-								<div class="col-md-4"><h4 style="margin:10 0; text-align:center;">이주영</h4></div>
+								<div class="col-md-4"><h4 style="margin:10 0; text-align:center;">서국현</h4></div>
 								<btn class="btn-col col-md-2 btn-round">
 								<i class="nc-icon nc-favourite-28" aria-hidden="true"></i>&nbsp;&nbsp;후기
 									25 &nbsp;&nbsp;</btn>  &nbsp;&nbsp;
 									<btn class="btn-info btn-round col-md-2 btn-col">더보기</btn>
 							</div>
-							<h6 style="color:red; margin: 10 0 0 30;">2급 상담사</h6><br/>
+							<h6 style="color:red; margin: 10 0 0 30;">1급 상담사</h6><br/>
 								<div class="col-md-12">
 									<p>An artist of considerable range, Jane Faker — the name
 										taken by Melbourne-raised, Brooklyn-ba Faker — the name taken by
@@ -151,7 +151,7 @@
 						</div>	
 						<div class="col-md-9">
 							<div class="col-name row">
-								<div class="col-md-4"><h4 style="margin:10 0; text-align:center;">이주영</h4></div>
+								<div class="col-md-4"><h4 style="margin:10 0; text-align:center;">민지형</h4></div>
 								<btn class="btn-col col-md-2 btn-round">
 								<i class="nc-icon nc-favourite-28" aria-hidden="true"></i>&nbsp;&nbsp;후기
 									25 &nbsp;&nbsp;</btn>  &nbsp;&nbsp;

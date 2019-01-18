@@ -7,9 +7,10 @@
 			VALUES(#{schdDate}, #{cId})
 	</insert>
 	<select id="selectSchd"  parameterType="String" resultType="String">
-		SELECT DATE_FORMAT(schddate, '%Y-%m-%d %H:%i:%s') 
+		SELECT DATE_FORMAT(SCHDDATE, '%Y-%m-%d %H:%i:%s') 
 			FROM SCHD 
 				WHERE (SCHDDATE BETWEEN NOW() AND NOW()+INTERVAL 14 DAY) 
 					AND CID = #{cId}
+				ORDER BY SCHDDATE
 	</select>
 </mapper>

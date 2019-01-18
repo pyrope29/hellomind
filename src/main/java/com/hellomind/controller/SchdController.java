@@ -7,6 +7,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +28,11 @@ public class SchdController {
 	@Autowired
 	private SchdService schdService;
 
+	 @RequestMapping("test") 
+	 public String test() { 
+		 return "schd/industry-mng"; 
+		 }
+	 
 	/*
 	 * @RequestMapping("viewColDet") public String colDet(Model model, String cId,
 	 * String msgPerPage) {
@@ -45,29 +51,25 @@ public class SchdController {
 		String cId = ( (ColDto) session.getAttribute("colInfo") ).getcId();
 			System.out.println("cId : " + cId);
 		
-		List<String> schdDateList = new ArrayList<>();
-		schdDateList = schdService.selectSchd(cId);
+		List<String> availableDateTime = new ArrayList<>();
+		availableDateTime = schdService.selectSchd(cId);
 
-		System.out.println("schdDateList : " +schdDateList.toString());
+		System.out.println("availableDateTime : " +availableDateTime.toString());
 
-		model.addAttribute("schdDateList",schdDateList);
+		model.addAttribute("availableDateTime",availableDateTime);
 		
-		List<String> availableDates = new ArrayList<>();
-		List<String> availableTime = new ArrayList<>();
+		List<String> aDates = new ArrayList<>();
 		
-		for(String sList : schdDateList) {
+		for(String sList : availableDateTime) {
 			String aList = sList.substring(0, 10);
-			availableDates.add(aList);
-
-			String tList = sList.substring(11, 19);
-			availableTime.add(tList);
+			aDates.add(aList);
 		}
+		
+		TreeSet<String> arr2 =  new TreeSet<>(aDates);
+		List<String> availableDates = new ArrayList<>(arr2);
+		System.out.println("정렬된 availableDates : " + availableDates);
 
-		System.out.println("availableDatesddddddd : " +availableDates);
-		System.out.println("availableTimeddddddddd : " +availableTime);
-
-		model.addAttribute("availableDates",availableDates);
-		model.addAttribute("availableTime",availableTime);
+		model.addAttribute("availableDates",aDates);
 		return "schd/schedule";
 	}
 	
