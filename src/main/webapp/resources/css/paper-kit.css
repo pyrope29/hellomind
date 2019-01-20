@@ -1,3 +1,26 @@
+#previewAvatar{
+	width:70px;
+}
+
+.small-font{
+	font-size:0.8em;
+}
+
+
+.acc-content{
+    width: 250px;
+    height: 170px;
+    padding: 20px;
+}
+.item{
+	margin-top:5px;
+}
+
+/* ********************************************* */
+
+
+
+
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, .navbar, .brand,
 	a, .td-name, td, button, input, select, textarea {
 	-moz-osx-font-smoothing: grayscale;
@@ -96,6 +119,10 @@ blockquote small {
 	color: #51bcda !important;
 }
 
+    
+p .text-info {
+    font-size: 0.7em;
+}
 .text-success, .text-success:hover {
 	color: #6bd098 !important;
 }
@@ -4921,6 +4948,7 @@ px
 	padding: 20px;
 	text-align: center;
 	display: block !important;
+	
 }
 
 .modal-header.no-border-header {
@@ -4956,6 +4984,8 @@ px
 .modal-body {
 	padding: 20px 50px;
 	color: #000;
+	background-color: aliceblue;
+	height:400px;
 }
 
 .modal-footer {
@@ -4967,10 +4997,16 @@ px
 	border-top: 0 none;
 }
 
-.modal-footer .left-side, .modal-footer .right-side {
+.modal-body .left-side {
 	display: inline-block;
 	text-align: center;
-	width: 49%;
+	width: 39%;
+}
+
+.modal-body .right-side {
+	display: inline-block;
+	text-align: center;
+	width: 59%;
 }
 
 .modal-footer .btn-link {
@@ -7338,7 +7374,7 @@ important
 }
 
 .page-header.page-header-xs {
-	min-height: 40vh !important;
+	min-height: 30vh !important;
 }
 
 .page-header.section-dark .content-center, .page-header.section-dark .category-absolute

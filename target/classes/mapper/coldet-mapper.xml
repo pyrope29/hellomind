@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hellomind.dao.ColDetDao">
+	<insert id="insertColDet" parameterType="colDetDto">
+		INSERT INTO COLDET (CID,PIC,INTRO,CAREER,CERT,ORIGNPICTURE,SAVEPICTURE,SAVEFOLDER) 
+ 			VALUES (#{cId},#{pic},#{intro},#{career},#{cert},#{orignPicture},#{savePicture},#{saveFolder})
+	</insert>
+	<update id="updateColDet" parameterType="colDetDto">
+		UPDATE COLDET 
+			SET PIC=#{pic},INTRO=#{intro},CAREER=#{career},ORIGNPICTURE=#{orignPicture},SAVEPICTURE=#{savePicture},SAVEFOLDER=#{saveFolder}  
+				WHERE CID=#{cId}
+	</update>
+	<select id="selectColDet" parameterType="String" resultType="colDetDto">
+		SELECT * FROM COLDET 
+			WHERE CID=#{cId}
+	</select>
+</mapper>

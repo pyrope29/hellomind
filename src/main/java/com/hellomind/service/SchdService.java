@@ -14,7 +14,7 @@ public interface SchdService {
 	
 	int updateCStats(String cId);*/
 
-	List<String> selectSchd(String cId);
+	List<SchdDto> selectSchd(String cId);
 	 
 	 /* Map<String, Object> selectColList(Map<String, Object> data);*/
 }

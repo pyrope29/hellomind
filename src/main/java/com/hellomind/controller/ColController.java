@@ -1,20 +1,31 @@
 package com.hellomind.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.hellomind.dto.ColDetDto;
 import com.hellomind.dto.ColDto;
 import com.hellomind.dto.MemberDto;
+import com.hellomind.service.ColDetService;
 import com.hellomind.service.ColService;
 
 @Controller
@@ -24,7 +35,11 @@ public class ColController {
 	@Autowired
 	private ColService colService;
 	@Autowired
-	BCryptPasswordEncoder passwordEncoder;
+	private ColDetService colDetService;
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;	
+	@Autowired
+	private ServletContext servletContext;
 
 	@RequestMapping("search")
 	public String col(Model model, String page, String msgPerPage) {
@@ -46,18 +61,6 @@ public class ColController {
 		model.addAttribute("viewData", viewData);	
 
 		return "col/colList";
-	}
-	
-
-	@RequestMapping("viewColDet")
-	public String colDet(Model model, String cId, String msgPerPage) {
-	
-		//ColDto colDto = colService.selectCol(cId);
-		//System.out.println("colDto : " +colDto.toString());
-		
-		//model.addAttribute("colDto", colDto);	
-			//colDto 하나하나 뿌려주기
-		return "col/colDet";
 	}
 	
 	@RequestMapping("regist")
@@ -113,5 +116,84 @@ public class ColController {
 		session.removeAttribute("colInfo");
 		return "redirect:/col";
 	}
+	
+	@RequestMapping(value = "join", method = RequestMethod.GET)
+	public String join() {
+		System.out.println("조인 요청");
+		return "col/join";
+	}
 		
+	@Transactional
+	@RequestMapping(value = "join", method = RequestMethod.POST)
+	public String join(@RequestParam Map<String, String> param, Model model, @RequestParam("pic") MultipartFile multipartFile,
+			@RequestParam("cert") MultipartFile multipartFile2) throws IOException {
+		System.out.println(param +"\n"+ multipartFile +"\n"); 
+		ColDto colDto = new ColDto();
+		colDto.setcId(param.get("cId"));
+		// 비밀번호 암호화
+		colDto.setcPw(passwordEncoder.encode(param.get("cPw")));
+		colDto.setcName(param.get("cName"));
+		colDto.setcEmail(param.get("cEmail"));
+		colDto.setcPnum(param.get("cPnum"));
+		colDto.setcLv(param.get("cLv"));
+		
+		ColDetDto colDetDto = new ColDetDto();
+		colDetDto.setcId(param.get("cId"));
+		colDetDto.setCareer(param.get("career"));
+		colDetDto.setIntro(param.get("intro"));
+
+		
+		if(multipartFile != null && !multipartFile.isEmpty()) {
+			String opicture = multipartFile.getOriginalFilename();
+			String opicture2 = multipartFile2.getOriginalFilename();
+			
+			String realPath = servletContext.getRealPath("/img/pic");
+			System.out.println("realpath : " + realPath);
+			
+			String realPath2 = servletContext.getRealPath("/img/cert");
+			System.out.println("realpath2 : " + realPath2);
+			
+			DateFormat df = new SimpleDateFormat("yyMMdd");
+			String saveFolder = df.format(new Date());
+			String fullSaveFolder = realPath + File.separator + saveFolder;
+			String fullSaveFolder2 = realPath2 + File.separator + saveFolder;
+			
+			System.out.println("fullSaveFolder : " + fullSaveFolder);
+			System.out.println("fullSaveFolder2 : " + fullSaveFolder2);
+			
+			File dir = new File(fullSaveFolder);
+			File dir2 = new File(fullSaveFolder2);
+			if(!dir.exists())
+				dir.mkdirs();
+			
+			if(!dir2.exists())
+				dir2.mkdirs();
+			
+			String savePicture = UUID.randomUUID().toString() + opicture.substring(opicture.lastIndexOf('.'));
+			String savePicture2 = param.get("cId") + UUID.randomUUID().toString() + opicture2.substring(opicture2.lastIndexOf('.'));
+			
+			File file = new File(fullSaveFolder, savePicture);
+			File file2 = new File(fullSaveFolder2, savePicture2);
+			
+			try {
+				multipartFile.transferTo(file);
+				multipartFile2.transferTo(file2);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			colDetDto.setOrignPicture(opicture);
+			colDetDto.setSavePicture(savePicture);
+			colDetDto.setSaveFolder(saveFolder);
+			
+		}
+		
+		if (0 < colService.insertCol(colDto) && 0 < colDetService.insertColDet(colDetDto) ) {
+			model.addAttribute("msg", "상담사 가입이 완료되었습니다.");
+			model.addAttribute("url", "/col");
+		}
+		return "common/info";
+	}
 }

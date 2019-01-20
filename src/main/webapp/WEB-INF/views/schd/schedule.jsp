@@ -32,8 +32,8 @@
 }
 
 #alternate {
-	width: 150;
-	height: 150;
+	width: 200;
+	height: 200;
 	margin-top: 60;
 	border-radius: 100px;
 	font-size: 1.5em;
@@ -51,7 +51,6 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/colHeader.jsp"%>
-
 	<div class="wrapper">
 		<div class="page-header section-dark"
 			style="background-image: url('${root}/resources/img/counselling2.jpg')">
@@ -66,10 +65,10 @@
 						<p>날짜를 선택해 주세요
 						<p>
 						<div class="row">
-							<div class="col-md-8">
+							<div class="col-md-7">
 								<div id="datepicker"></div>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-4">
 								<input type="button" class="btn btn-warning btn-just-icon"
 									id="alternate" value="">
 								<!-- 	<i class="nc-icon nc-calendar-60" id="icon"></i> -->
@@ -80,18 +79,50 @@
 					<br />
 					<div class="container time-list">
 						<p>시간을 선택해 주세요</p>
-						<c:forEach begin="12" end="21" var="i">
-	                         <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" name="time" type="checkbox" value="${i}:00:00">
-                                     ${i} : 00 ~ ${i} : 50
-                                    <span class="form-check-sign"></span>
-                                </label>
-	                          </div>
-	                    </c:forEach>
+
+							
+					<%-- 		<c:forEach items="${multiList}" var="list" >
+								<c:forEach items="${list['2019-01-30']}" var="timeList" >
+									
+										 <div class="form-check disabled">
+										 <input class="form-check-input" name="time" type="checkbox" value=" ${timeList}:00:00">
+	                               		 <label class="form-check-label">
+                                    		<span class="form-check-sign">${timeList} : 0 0 ~  ${timeList} : 5 0 </span>
+                               					</label>
+	                         	 			</div> 
+	                         	 			
+								</c:forEach>
+	                    </c:forEach> --%>
+				
+					multiList : ${multiList}<br/>
+					
+	                    
+	                    	<div class="row">
+	                    	<c:forEach begin="9" end="15" var="i">
+		                    	<div class="form-check col-md-4">
+	                                <label class="form-check-label">
+	                                    <input class="form-check-input" name="time" type="checkbox" value="${i}">
+	                                     ${i} : 0 0 ~ ${i} : 5 0
+	                                    <span class="form-check-sign"></span>
+	                                </label>
+		                          </div>
+		                     </c:forEach>
+		                     <c:forEach begin="16" end="24" var="i">    
+		                         <div class="form-check col-md-4">
+	                                <label class="form-check-label">
+	                                    <input class="form-check-input" name="time" type="checkbox" value="${i}">
+	                                     ${i} : 0 0 ~ ${i} : 5 0
+	                                    <span class="form-check-sign"></span>
+	                                </label>
+		                          </div>
+		                    </c:forEach>
+	                         </div> 
+
 							<button type="button" onclick="dateTimeFunc();"
-								class="btn btn-lg btn-warning btn-round pull-right">예약 완료
+								class="btn btn-lg btn-warning btn-round pull-right col-md-3">예약 완료
 							</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -104,27 +135,71 @@
 		var dateTime = $("#datepicker").val() + " "+ $("input[name=time]:checked").val();
 		location.href="${root}/schd/registSchd?dateTime="+dateTime;
 	}
+		//날짜값, 날짜와 시간 값 String으로 받아와 배열로 변형	
+	var multiList="${multiList}";
+	var dateList="${dateList}";
 	
-	function toJavascript(){
-	    var array="${availableDates}";
-	    array=array.replace("[", "").replace("]", "");
-	    
-	    var temp = new Array();
+	function toJavascript(array){
+		array=array.replace("[", "").replace("]", "");
+		var temp = new Array();
 		temp = array.split(",");
-	
 		var avail = [];
+		
 	    for(var i = 0; i < temp.length; i++){
-		    avail.push(temp[i].trim());
+		    avail.push(temp[i].trim().substr(0, 10));
 	    }
 	    return avail;
 	}
-		$(function() {		/* datePicker */
-			console.log(toJavascript());
-	 		var availableDates = toJavascript();
+	
+	
+	function toJavascript2(array){
+		array = array.substring(2, array.length-2);
+		
+		var temp = new Array();
+		temp = array.split("},"); 
+		var avail = [];
+	    for(var i = 0; i < temp.length; i++){
+		    avail.push(temp[i].trim().replace("{","").replace("}",""));
+	    }
+	    
+	    console.log("avail"+ avail);
+	    return avail;
+	}
+	
+	function toJavascript3(array){
+		
+        var idx = array.indexOf("["); 
+        var idx2 = array.indexOf("]"); 
+
+        var array = array.substring(idx+1,idx2);
+
+		var temp = new Array();
+		temp = array.split(",");
+		var avail = [];
+		
+	    for(var i = 0; i < temp.length; i++){
+		    avail.push(temp[i].trim().substr(0, 2));
+	    }
+	    
+	    console.log("avail3"+ avail);
+	    return avail;
+	}
+	//2019-01-30=[14, 18, 19]
+	
+	
+	var multiList2 = toJavascript2(multiList);
+	
+	
+		$(function() {		
+			console.log(toJavascript(dateList) + "\n" + toJavascript2(multiList));
+			
+		
+	 		var availableDates = toJavascript(dateList);
 		
 			$.datepicker.setDefaults({
 				monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7', '8',
-						'9', '10', '11', '12' ] //달력의 월 부분 텍스트
+						'9', '10', '11', '12' ] //달력의 월 부분 텍스트 
+			//{2019-01-24=[17]}, {2019-01-28=[14, 17]}, {2019-01-29=[10]}, {2019-01-30=[14, 18, 19]}
 				,
 				monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
 						'9월', '10월', '11월', '12월' ] //달력의 월 부분 Tooltip 텍스트
@@ -159,6 +234,7 @@
 					return [ false, "", "" ];
 				}
 			}
+
 			$('#datepicker').datepicker({
 				altFormat : "d, MM, yy",
 				altField : "#alternate",
@@ -169,6 +245,21 @@
 		});
  
 		$('#datepicker').change(function() {
-			window.location.reload();
-		});
+			//window.location.reload();	
+			$('.form-check-input').prop("checked", false);
+			for(var i in multiList2){
+				if((multiList2[i].substr(0,10))==$("#datepicker").val()){
+					var dtList = toJavascript3(multiList2[i]);
+					for(var j in dtList){
+						console.log("j :" + dtList[j]);
+						
+						$('input:checkbox[name="time"]:input[value="'  +dtList[j]+ '"]').attr("checked", true);
+						
+					}
+				}
+			}
+		
+		}); 
+		
+		
 </script>

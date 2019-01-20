@@ -9,5 +9,5 @@ public interface SchdDao {
 
 	int insertSchd(SchdDto schdDto);
 
-	List<String> selectSchd(String cId);
+	List<SchdDto> selectSchd(String cId);
 }

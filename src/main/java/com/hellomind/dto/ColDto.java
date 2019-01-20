@@ -8,7 +8,6 @@ public class ColDto {
 	private String cLv; // 1급 2급 예비상담사
 	private String cEmail; // 이메일
 	private String cPnum; // 전화번호
-	private String cert; // 자격증 파일
 	private String cStats; // 인증전0 인증후1 탈퇴2
 	private String cRegdate;
 
@@ -60,14 +59,6 @@ public class ColDto {
 		this.cPnum = cPnum;
 	}
 
-	public String getCert() {
-		return cert;
-	}
-
-	public void setCert(String cert) {
-		this.cert = cert;
-	}
-
 	public String getcStats() {
 		return cStats;
 	}
@@ -87,7 +78,7 @@ public class ColDto {
 	@Override
 	public String toString() {
 		return "ColDto [cId=" + cId + ", cName=" + cName + ", cPw=" + cPw + ", cLv=" + cLv + ", cEmail=" + cEmail
-				+ ", cPnum=" + cPnum + ", cert=" + cert + ", cStats=" + cStats + ", cRegdate=" + cRegdate + "]";
+				+ ", cPnum=" + cPnum + ", cStats=" + cStats + ", cRegdate=" + cRegdate + "]";
 	}
 
 }

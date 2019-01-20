@@ -1,16 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/public.jsp"%>
-<style>
-.acc-content{
-    width: 250px;
-    height: 170px;
-    padding: 20px;
-}
-.item{
-	margin-top:5px;
-}
-
-</style>
 </head>
 <body>
 <nav class="navbar navbar-expand-md fixed-top navbar-transparent nav-no-padding" color-on-scroll="500">
@@ -68,23 +57,16 @@
                                          placeholder="비밀번호를 입력해 주세요.">
                                     </div>
                                     <button type="submit" class="btn btn-success btn-sm">상담사 로그인</button>
-                                    <button type="button" class="btn btn-primary btn-sm">회원가입</button>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="location.href='${root}/col/join'">회원가입</button>
                                 </div>
                             </form>
                         </div>
-                        
-                <%--         
-					<li class="nav-item"><a class="nav-link"
-						href="${root}/col/login">&nbsp;&nbsp;&nbsp;&nbsp; <i
-							class="nc-icon nc-single-02" aria-hidden="true"></i>Login</a></li>
-				 --%></c:if>
+               </c:if>
 				<c:if test="${colInfo!=null}">
 					<li class="nav-item"><a class="nav-link"
 						href="${root}/col/logout">&nbsp;&nbsp;&nbsp;&nbsp; <i
 							class="nc-icon nc-user-run" aria-hidden="true"></i>Logout</a></li>
 				</c:if>
-				
-				
                         
 			</ul>
 		</div>

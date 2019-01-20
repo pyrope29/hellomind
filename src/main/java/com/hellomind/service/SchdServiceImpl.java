@@ -22,7 +22,7 @@ public class SchdServiceImpl implements SchdService {
 	}
 
 	@Override
-	public List<String> selectSchd(String cId) {
+	public List<SchdDto> selectSchd(String cId) {
 		return sqlSession.getMapper(SchdDao.class).selectSchd(cId);
 	}
 }

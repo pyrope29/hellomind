@@ -2,18 +2,22 @@ package com.hellomind.dto;
 
 public class ColDetDto {
 
-	private int cNum; // 상담사 번호
+	private String cId; // 상담사 번호
 	private String pic; // 사진 이미지
-	private String area; // 1~6 상담분야
 	private String intro; // 소개 1000자
 	private String career; // 경력 500자
 
-	public int getcNum() {
-		return cNum;
+	private String cert; // 자격증 파일
+	private String orignPicture;
+	private String savePicture;
+	private String saveFolder;
+
+	public String getcId() {
+		return cId;
 	}
 
-	public void setcNum(int cNum) {
-		this.cNum = cNum;
+	public void setcId(String cId) {
+		this.cId = cId;
 	}
 
 	public String getPic() {
@@ -22,14 +26,6 @@ public class ColDetDto {
 
 	public void setPic(String pic) {
 		this.pic = pic;
-	}
-
-	public String getArea() {
-		return area;
-	}
-
-	public void setArea(String area) {
-		this.area = area;
 	}
 
 	public String getIntro() {
@@ -48,9 +44,43 @@ public class ColDetDto {
 		this.career = career;
 	}
 
+	public String getCert() {
+		return cert;
+	}
+
+	public void setCert(String cert) {
+		this.cert = cert;
+	}
+
+	public String getOrignPicture() {
+		return orignPicture;
+	}
+
+	public void setOrignPicture(String orignPicture) {
+		this.orignPicture = orignPicture;
+	}
+
+	public String getSavePicture() {
+		return savePicture;
+	}
+
+	public void setSavePicture(String savePicture) {
+		this.savePicture = savePicture;
+	}
+
+	public String getSaveFolder() {
+		return saveFolder;
+	}
+
+	public void setSaveFolder(String saveFolder) {
+		this.saveFolder = saveFolder;
+	}
+
 	@Override
 	public String toString() {
-		return "ColDetDto [cNum=" + cNum + ", pic=" + pic + ", area=" + area + ", intro=" + intro + ", career=" + career
+		return "ColDetDto [cId=" + cId + ", pic=" + pic + ", intro=" + intro + ", career=" + career + ", cert=" + cert
+				+ ", orignPicture=" + orignPicture + ", savePicture=" + savePicture + ", saveFolder=" + saveFolder
 				+ "]";
 	}
+
 }
