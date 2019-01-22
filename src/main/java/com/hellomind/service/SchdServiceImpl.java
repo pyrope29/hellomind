@@ -18,11 +18,25 @@ public class SchdServiceImpl implements SchdService {
 	@Override
 	public int insertSchd(SchdDto schdDto) {
 		return sqlSession.getMapper(SchdDao.class).insertSchd(schdDto);
-
 	}
 
 	@Override
-	public List<SchdDto> selectSchd(String cId) {
-		return sqlSession.getMapper(SchdDao.class).selectSchd(cId);
+	public List<SchdDto> selectSchdById(String cId) {
+		return sqlSession.getMapper(SchdDao.class).selectSchdById(cId);
+	}
+
+	@Override
+	public int updateSchd(SchdDto schdDto) {
+		return sqlSession.getMapper(SchdDao.class).updateSchd(schdDto);
+	}
+
+	@Override
+	public SchdDto selectSchd(Map<String, String> map) {
+		return sqlSession.getMapper(SchdDao.class).selectSchd(map);
+	}
+
+	@Override
+	public int deleteSchd(Map<String, String> map) {
+		return sqlSession.getMapper(SchdDao.class).deleteSchd(map);
 	}
 }

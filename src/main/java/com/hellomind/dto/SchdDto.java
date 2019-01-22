@@ -3,7 +3,6 @@ package com.hellomind.dto;
 public class SchdDto {
 	private int schdNum; // 일정가능번호
 	private String cId; // 상담사 아이디
-	private String schdDate; // 상담일정이 가능한 일 + 시간
 	private String schdDates; // 상담일정이 가능한 날짜
 	private String schdTime; // 상담일정이 가능한 시간
 
@@ -21,14 +20,6 @@ public class SchdDto {
 
 	public void setcId(String cId) {
 		this.cId = cId;
-	}
-
-	public String getSchdDate() {
-		return schdDate;
-	}
-
-	public void setSchdDate(String schdDate) {
-		this.schdDate = schdDate;
 	}
 
 	public String getschdDates() {
@@ -49,7 +40,7 @@ public class SchdDto {
 
 	@Override
 	public String toString() {
-		return "SchdDto [schdNum=" + schdNum + ", cId=" + cId + ", schdDate=" + schdDate + ", schdDates=" + schdDates
+		return "SchdDto [schdNum=" + schdNum + ", cId=" + cId + ", schdDates=" + schdDates
 				+ ", schdTime=" + schdTime + "]";
 	}
 

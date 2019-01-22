@@ -3,19 +3,29 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hellomind.dao.SchdDao">
 	<insert id="insertSchd" parameterType="schdDto">
-		INSERT INTO SCHD (SCHDDATE,CID,SCHDDATES,SCHDTIME) 
-			VALUES(#{schdDate}, #{cId}, #{schdDates}, #{schdTime})
-	</insert>
-	<select id="selectSchd"  parameterType="String" resultType="schdDto">
-			SELECT *, DATE_FORMAT(SCHDDATES,'%Y-%m-%d'), SCHDTIME  
+		INSERT INTO SCHD (CID,SCHDDATES,SCHDTIME) 
+			VALUES(#{cId}, #{schdDates}, #{schdTime})
+	</insert>	
+	<update id="updateSchd" parameterType="schdDto">
+		UPDATE SCHD SET 
+			CID=#{cId}, SCHDDATES = STR_TO_DATE(#{schdDates},'%Y-%m-%d'), SCHDTIME = #{schdTime}
+	</update>
+	<select id="selectSchd"  parameterType="Map" resultType="schdDto">
+			SELECT SCHDNUM, CID, SCHDTIME, DATE_FORMAT(SCHDDATES,'%Y-%m-%d') SCHDDATES
 			FROM SCHD 
-				WHERE (SCHDDATES BETWEEN NOW() AND NOW()+INTERVAL 14 DAY) 
-					AND CID =  #{cId}
-				ORDER BY SCHDDATES
-		<!-- SELECT DATE_FORMAT(SCHDDATE, '%Y-%m-%d %H:%i:%s') 
-			FROM SCHD 	
-				WHERE (SCHDDATE BETWEEN NOW() AND NOW()+INTERVAL 14 DAY) 
-					AND CID = #{cId}
-				ORDER BY SCHDDATE -->
+				WHERE CID=#{cId} and SCHDDATES = STR_TO_DATE(#{schdDates},'%Y-%m-%d') and SCHDTIME = #{schdTime}
 	</select>
+	<select id="selectSchdById"  parameterType="String" resultType="schdDto">
+			SELECT s.SCHDNUM, s.CID, s.SCHDTIME, DATE_FORMAT(s.SCHDDATES,'%Y-%m-%d') SCHDDATES
+			FROM SCHD s LEFT OUTER JOIN REG r
+				on s.schdnum = r.schdnum
+				WHERE (s.SCHDDATES BETWEEN NOW() AND NOW()+INTERVAL 14 DAY) 
+					AND s.CID = #{cId}
+						AND r.SCHDNUM IS NULL 
+					ORDER BY s.SCHDDATES, s.SCHDTIME
+	</select>
+	<delete id="deleteSchd" parameterType="Map">
+		DELETE from SCHD 
+			where CID=#{cId} and SCHDDATES = STR_TO_DATE(#{schdDates},'%Y-%m-%d') and SCHDTIME = #{schdTime}
+	</delete>
 </mapper>

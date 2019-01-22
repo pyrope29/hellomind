@@ -79,24 +79,6 @@
 					<br />
 					<div class="container time-list">
 						<p>시간을 선택해 주세요</p>
-
-							
-					<%-- 		<c:forEach items="${multiList}" var="list" >
-								<c:forEach items="${list['2019-01-30']}" var="timeList" >
-									
-										 <div class="form-check disabled">
-										 <input class="form-check-input" name="time" type="checkbox" value=" ${timeList}:00:00">
-	                               		 <label class="form-check-label">
-                                    		<span class="form-check-sign">${timeList} : 0 0 ~  ${timeList} : 5 0 </span>
-                               					</label>
-	                         	 			</div> 
-	                         	 			
-								</c:forEach>
-	                    </c:forEach> --%>
-				
-					multiList : ${multiList}<br/>
-					
-	                    
 	                    	<div class="row">
 	                    	<c:forEach begin="9" end="15" var="i">
 		                    	<div class="form-check col-md-4">
@@ -107,7 +89,7 @@
 	                                </label>
 		                          </div>
 		                     </c:forEach>
-		                     <c:forEach begin="16" end="24" var="i">    
+		                     <c:forEach begin="16" end="22" var="i">    
 		                         <div class="form-check col-md-4">
 	                                <label class="form-check-label">
 	                                    <input class="form-check-input" name="time" type="checkbox" value="${i}">
@@ -118,8 +100,8 @@
 		                    </c:forEach>
 	                         </div> 
 
-							<button type="button" onclick="dateTimeFunc();"
-								class="btn btn-lg btn-warning btn-round pull-right col-md-3">예약 완료
+							<button type="button" onclick="registSchd();"
+								class="btn btn-lg btn-warning btn-round pull-right col-md-2">예약 완료
 							</button>
 							</div>
 						</div>
@@ -131,13 +113,31 @@
 
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
-	function dateTimeFunc(){
-		var dateTime = $("#datepicker").val() + " "+ $("input[name=time]:checked").val();
-		location.href="${root}/schd/registSchd?dateTime="+dateTime;
+	
+	var dtList;
+	
+	function registSchd(){
+		var date= $("#datepicker").val();
+		var time= new Array();
+		
+		$("input[name=time]:checked").each(function() {
+			time.push($(this).val());
+			console.log(time);
+		});
+		
+		/* 
+		$("input[name=time]:checked").each(function() {
+			time += $(this).val();
+			console.log($(this).val());
+		});
+		
+		location.href="${root}/schd/registSchd?date="+date+"&time="+time; */
+		location.href="${root}/schd/registSchd?date="+date+"&time="+time;
 	}
 		//날짜값, 날짜와 시간 값 String으로 받아와 배열로 변형	
 	var multiList="${multiList}";
 	var dateList="${dateList}";
+
 	
 	function toJavascript(array){
 		array=array.replace("[", "").replace("]", "");
@@ -184,38 +184,25 @@
 	    console.log("avail3"+ avail);
 	    return avail;
 	}
-	//2019-01-30=[14, 18, 19]
-	
 	
 	var multiList2 = toJavascript2(multiList);
 	
-	
 		$(function() {		
 			console.log(toJavascript(dateList) + "\n" + toJavascript2(multiList));
-			
-		
-	 		var availableDates = toJavascript(dateList);
+	 		//var availableDates = toJavascript(dateList);
 		
 			$.datepicker.setDefaults({
-				monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7', '8',
-						'9', '10', '11', '12' ] //달력의 월 부분 텍스트 
-			//{2019-01-24=[17]}, {2019-01-28=[14, 17]}, {2019-01-29=[10]}, {2019-01-30=[14, 18, 19]}
-				,
+				monthNamesShort : [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12' ],
 				monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
-						'9월', '10월', '11월', '12월' ] //달력의 월 부분 Tooltip 텍스트
-				,
-				dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ] //달력의 요일 부분 텍스트
-				,
-				dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일' ] //
-				,
-				minDate : "0D" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-				,
-				maxDate : "+14D" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                   
+						'9월', '10월', '11월', '12월' ],
+				dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ] ,
+				dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일' ],
+				minDate : "+1D",
+				maxDate : "+14D"
 			});
 
-			//선택가능 날짜  배열로 가져오기(DB에서)
 
-			function available(date) {
+		/* 	function available(date) {
 				var thismonth = date.getMonth() + 1;
 				var thisday = date.getDate();
 
@@ -233,33 +220,28 @@
 				} else {
 					return [ false, "", "" ];
 				}
-			}
+			} */
 
 			$('#datepicker').datepicker({
 				altFormat : "d, MM, yy",
 				altField : "#alternate",
 				dateFormat : "yy-mm-dd",
-				regional : "ko",
-				beforeShowDay : available
+				regional : "ko"
+				//beforeShowDay : available
 			});
 		});
  
 		$('#datepicker').change(function() {
-			//window.location.reload();	
 			$('.form-check-input').prop("checked", false);
 			for(var i in multiList2){
 				if((multiList2[i].substr(0,10))==$("#datepicker").val()){
-					var dtList = toJavascript3(multiList2[i]);
+					dtList = toJavascript3(multiList2[i]);
 					for(var j in dtList){
 						console.log("j :" + dtList[j]);
 						
-						$('input:checkbox[name="time"]:input[value="'  +dtList[j]+ '"]').attr("checked", true);
-						
+						$('input:checkbox[name="time"]:input[value="'  +dtList[j]+ '"]').prop("checked", true);
 					}
 				}
 			}
-		
 		}); 
-		
-		
 </script>

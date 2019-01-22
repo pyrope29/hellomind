@@ -27,10 +27,6 @@
     <link href="${root}/resources/css/nucleo-icons.css" rel="stylesheet" />
     
     
-    
-    
-    
-    
     <!-- Core JS Files -->
 <script src="${root}/resources/js/jquery-3.2.1.js" type="text/javascript"></script>
 <script src="${root}/resources/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>

@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -25,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hellomind.dto.ColDetDto;
 import com.hellomind.dto.ColDto;
 import com.hellomind.dto.MemberDto;
+import com.hellomind.dto.SchdDto;
 import com.hellomind.service.ColDetService;
 import com.hellomind.service.ColService;
 
@@ -61,11 +65,6 @@ public class ColController {
 		model.addAttribute("viewData", viewData);	
 
 		return "col/colList";
-	}
-	
-	@RequestMapping("regist")
-	public String regist() {
-		return "col/regist";
 	}
 	
 	@RequestMapping
@@ -196,4 +195,13 @@ public class ColController {
 		}
 		return "common/info";
 	}
+	
+	@RequestMapping(value = "viewColDet", method = RequestMethod.GET)
+	public String viewColDet(Model model) {
+		System.out.println("상담사 디테일 요청");
+		//TODO
+		model.addAttribute("cId", "2");
+		return "col/colDet";
+	}
+	
 }

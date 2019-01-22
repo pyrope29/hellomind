@@ -9,5 +9,11 @@ public interface SchdDao {
 
 	int insertSchd(SchdDto schdDto);
 
-	List<SchdDto> selectSchd(String cId);
+	int updateSchd(SchdDto schdDto);
+	
+	SchdDto selectSchd(Map<String, String> map);
+
+	List<SchdDto> selectSchdById(String cId);
+	
+	int deleteSchd(Map<String, String> map);
 }

@@ -9,12 +9,14 @@ import com.hellomind.dto.SchdDto;
 public interface SchdService {
 
 	int insertSchd(SchdDto schdDto);
-/*
-	int updateSched(ColDto colDto);
-	
-	int updateCStats(String cId);*/
 
-	List<SchdDto> selectSchd(String cId);
+	int updateSchd(SchdDto schdDto);
+	
+	SchdDto selectSchd(Map<String, String> map);
+
+	List<SchdDto> selectSchdById(String cId);
+	
+	int deleteSchd(Map<String, String> map);
 	 
 	 /* Map<String, Object> selectColList(Map<String, Object> data);*/
 }

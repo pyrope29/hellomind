@@ -90,7 +90,7 @@
 									<div class="col-md-5">
 									<h4 style="color:red; margin: 10 0 0 30;">2급 상담사</h4><br/></div>
 									<btn class="btn-success col-md-5 btn-col" 
-										onclick="location.href='${root}/col/regist'">예약하러 가기</btn>
+										onclick="location.href='${root}/schd/memberRegist?cId=${cId}'">예약하러 가기</btn>
 								</div>
 							</div>
 						</div>

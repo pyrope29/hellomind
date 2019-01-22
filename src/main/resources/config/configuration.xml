@@ -9,5 +9,6 @@
 		<typeAlias alias="colDto" type="com.hellomind.dto.ColDto" />
 		<typeAlias alias="colDetDto" type="com.hellomind.dto.ColDetDto" />
 		<typeAlias alias="memberDto" type="com.hellomind.dto.MemberDto" />
+		<typeAlias alias="regDto" type="com.hellomind.dto.RegDto" />
 	</typeAliases>
 </configuration>
