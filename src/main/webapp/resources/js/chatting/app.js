@@ -1,9 +1,11 @@
-//1 대 1 채 팅 !!!!!!!!!!!! +chat3.html
 
 // Express 기본 모듈 불러오기
 var express = require('express')
+// mysql 연결
+var pool = require('./dbConnect');
+
 var http = require('http')
-var static = require('serve-static');
+var statics = require('serve-static');
 var path = require('path');
 //Socket.IO 사용
 var socketio = require('socket.io');
@@ -15,12 +17,30 @@ var app = express();
 //클라이언트에서 ajax로 요청 시 CORS(다중 서버 접속) 지원
 app.use(cors());
 app.set('port', process.env.PORT || 3000);
-app.use('/public', static(path.join(__dirname, 'public')));
 
+app.use(function(request, response, next){
+	//미들웨어 설정 후 변수 셋팅
+	var id = request.query.id;
+	/*var date = request.param('date');
+	var time = request.param('time');*/
+	console.log('아이디: ' + id /*+ 'date  : ' + date +'time:' + time*/);
+	next();
+});
+
+
+app.use('/hellomind', statics(path.join(__dirname, 'public')));
 // 시작된 서버 객체를 리턴받도록 합니다. 
 var server = http.createServer(app).listen(app.get('port'), function(){
+	
+	
+	
+	console.log('id 님이 입장하셨습니다');//id = 상담사일경우 cId, 멤버일경우 mId가 파라미터의 id값으로 이동
 	console.log('서버가 시작되었습니다. 포트 : ' + app.get('port'));
 });
+
+
+
+
 
 
 // 로그인 아이디 매핑 (로그인 ID -> 소켓 ID)    여기이해꼭!!!!!!!
@@ -90,7 +110,9 @@ io.sockets.on('connection', function(socket) {
         	}
         }
     });
+    
 });
+
 
 // 응답 메시지 전송 메소드
 function sendResponse(socket, command, code, message) {
