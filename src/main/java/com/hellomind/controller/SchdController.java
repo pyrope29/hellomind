@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -221,4 +222,24 @@ public class SchdController {
 		model.addAttribute("url", "memberRegist?cId=" + param.get("cId"));
 		return "common/info";
 	}
+	
+	
+	/* 채팅 방 들어가기*/
+	
+	@RequestMapping(value = "chat", method = RequestMethod.GET)
+	public void colChat(HttpSession session, Model model, HttpServletResponse response) {
+		
+		ColDto colDto = (ColDto)session.getAttribute("colInfo");
+		model.addAttribute("id", colDto.getcId());
+		
+		//if
+		/*
+		MemberDto memberDto = (MemberDto)session.getAttribute("userInfo");
+		model.addAttribute("mId", memberDto.getmId());*/
+		response.setHeader("Location", "http://localhost:3000");
+		
+		
+		//http://localhost:3000/hellomind/chat.html?id=id
+	}
+
 }

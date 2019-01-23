@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/public.jsp"%>
-<style>
-/* 	.col-join-form .form-group{
-		margin-bottom: 3px;
-		border-bottom: 1px dotted gray;
-	} */
-</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/colHeader.jsp"%>
@@ -23,35 +17,39 @@
 	        </div>
 	        <div class="modal-body container"> 
 	        	<div class="row">
-					<div class="col-md-4">
-					01. 심리상담 진행 관련 내용
+					<div class="col-md-3">
+					01. <br/>심리상담 <br/>관련 내용
 					</div>
 					<div class="divider"></div>
-					<div class="col-md-8">
+					<div class="col-md-9">
 						내담자와 심리상담사는 Web에서 원하는 시간에 상담 진행 (태블릿 PC 가능)
 					</div>
 				</div> 
 				<hr/>
 				<div class="row">
-					<div class="col-md-4">
-					02. 지원 자격
+					<div class="col-md-3">
+					02. <br/>지원 자격
 					</div>
 					<div class="divider"></div>
-					<div class="col-md-8">
-						(사)한국상담심리학회 상담심리사, (사)한국상담학회 전문상담사,여성가족부 청소년상담사 2급 이상<br/>
-						 또는 (사)한국임상심리학회 임상심리전문가 자격증을 소지하신 분.<br/>
-						심리대학원 졸업증명서 취득하고 준비 중이인 예비상담사 분.<br/>
+					<div class="col-md-9">
+						<ul>
+							<li>(사)한국상담심리학회 상담심리사.</li>
+							<li>(사)한국상담학회 전문상담사.</li>
+							<li>여성가족부 청소년상담사 2급 이상.</li>
+							<li>(사)한국임상심리학회 임상심리전문가 자격증 소지자.</li>
+							<li>심리대학원 졸업증명서 취득하고 준비 중이신 예비상담사 분.</li>
+						</ul>
 					</div>
 				</div> 
 				<hr/>
 				<div class="row">
-					<div class="col-md-4">
-					03. 상담사 등록 신청 방법
+					<div class="col-md-3">
+					03. <br/>상담사 등록 <br/>신청 방법
 					</div>
 					<div class="divider"></div>
-					<div class="col-md-8">
-						Web페이지에서 양식에 맞게 작성하고, 증명 서류 업로드.<br/>
-						증명 서류 : 이력서 1부, 심리대학원 졸업증명서 혹은 각종 심리관련 자격증 사본.<br/>
+					<div class="col-md-9">
+						Web페이지 양식대로 작성 후, <br/>증명 서류 업로드.<br/>
+						증명 서류: 이력서 1부, 심리대학원 졸업증명서 <br/> 혹은 각종 심리관련 자격증 사본.
 					</div>
 				</div> 
 	        </div>

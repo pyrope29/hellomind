@@ -27,6 +27,7 @@
 		<mvc:mapping path="/"/>
 		<mvc:mapping path="/schd/memberRegist"/>
 		<mvc:mapping path="/schd/registChat"/>
+		<mvc:mapping path="/schd/memberChat"/>
 		<mvc:mapping path="/col/viewColDet"/>
 		<mvc:mapping path="/col/search"/>
 		<mvc:exclude-mapping path="/"/>
@@ -35,6 +36,10 @@
 		<mvc:exclude-mapping path="/member/join"/>
 		<mvc:exclude-mapping path="/col"/>
 		<mvc:exclude-mapping path="/col/join"/>
+		
+		
+		<mvc:exclude-mapping path="/hellomind"/>
+		
 		<bean class="com.hellomind.interceptor.MemberHandlerInterceptor"/>
 	</mvc:interceptor>
 	<mvc:interceptor>
@@ -49,7 +54,12 @@
 		<mvc:exclude-mapping path="/col/viewColDet"/>
 		<mvc:exclude-mapping path="/col/search"/>
 		<mvc:exclude-mapping path="/schd/memberRegist"/>
-			<mvc:exclude-mapping path="/schd/registChat"/>
+		<mvc:exclude-mapping path="/schd/memberChat"/>
+		<mvc:exclude-mapping path="/schd/registChat"/>
+		
+		<mvc:exclude-mapping path="/hellomind"/>
+		
+		
 		<bean class="com.hellomind.interceptor.ColHandlerInterceptor" />
 	</mvc:interceptor>
 </mvc:interceptors> 

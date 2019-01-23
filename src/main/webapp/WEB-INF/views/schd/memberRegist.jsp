@@ -93,7 +93,7 @@
 						</div>
 					</div>
 					<br />
-<!-- 							<br />
+<!-- 				<br />
 			<div class="col-md-12">
 						<div class="tim-title">
 							<h5>안내 사항</h5>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -81,8 +82,7 @@ public class MemberController {
 	
 		String id = param.get("mId");
 		String pw = param.get("mPw");
-		System.out.println("로그인 요청 id : " + id + "\npw:" + pw);
-		
+
 	   MemberDto memberDto = memberService.selectMember(id);	
 	
 		System.out.println("rawPw : " + pw);
@@ -98,7 +98,7 @@ public class MemberController {
 			/* if(pw.equals(memberDto.getmPw())) { */
 				model.addAttribute("msg", id + " 님 환영합니다");
 				session.setAttribute("userInfo", memberDto);
-				model.addAttribute("url", "/");
+				model.addAttribute("url", "../");
 				return "common/info";
 			} else {
 				model.addAttribute("msg", "비밀번호가 잘못되었습니다");
@@ -178,86 +178,6 @@ public class MemberController {
 			return "common/error";
 		}
 	}
-	
-	
-/*	
-	@RequestMapping(value = "modifyPw.bit", method = RequestMethod.GET)
-	public String modifyPw(Model model, HttpSession session) {
-		return "member/modifyPw";
-	}
-	
-	@RequestMapping(value = "list.bit", method = RequestMethod.GET)
-	public String list(Model model, HttpSession session) {
-		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
-		if(memberDto != null) {
-			List<MemberDto> mList = new ArrayList<MemberDto>();
-			mList = memberService.selectAllMember();
-		
-			model.addAttribute("mList", mList);
-		
-			return "member/list";
-		} else {
-			model.addAttribute("msg", "회원전용 게시판입니다. 로그인 해주세요");
-			model.addAttribute("url", "login.bit");
-			return "error";
-		}
-			
-	}
 
-
-
-	// --------------------restful 구현-----------------------------------
-
-
-	@RequestMapping(method = RequestMethod.GET)
-	public String mypage(HttpSession session, Model model) {
-		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
-		MemberDto member = memberService.selectMemberById(memberDto.getId());
-
-		model.addAttribute("id", member.getId());
-		model.addAttribute("name", member.getName());
-		model.addAttribute("bdate", member.getBdate().substring(0, 10));
-
-		if (member.getGender().equals("1")) {
-			model.addAttribute("gender", "남자");
-		} else {
-			model.addAttribute("gender", "여자");
-		}
-
-		model.addAttribute("pnum", member.getPnum());
-		model.addAttribute("addr", member.getAddr());
-
-		return "member/view";
-	}
-
-	
-	@RequestMapping(value="modifyPw", method = RequestMethod.PUT, headers={"Content-type=application/json"})
-	public @ResponseBody String modifyPw(@RequestParam Map<String, String> param, HttpSession session, Model model,
-			HttpServletRequest request) {
-		
-		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
-	
-		memberDto.setPw(param.get("pw"));
-		
-		System.out.println(param.get("pw"));
-		
-		if (0 < memberService.updateMember(memberDto)) {
-			System.out.println( "비번 수정이 완료되었습니다");
-			return "{\"result\" : \"YES\" }" ;
-		} else {
-			System.out.println( "비번 수정이 실패했습니다");
-			return "{\"result\" : \"NO\" }" ;
-		}
-	}
-	
-	@RequestMapping(method = RequestMethod.DELETE)
-	public @ResponseBody String delete(Model model,HttpSession session) {
-		MemberDto memberDto = (MemberDto) session.getAttribute("userInfo");
-		memberService.deleteMember(memberDto.getId());
-		session.removeAttribute("userInfo");
-		model.addAttribute("msg", "회원탈퇴가 완료되었습니다");
-		return "{\"result\" : \"badmin/boardmenu.bit\" }" ;
-	}
-	*/
 }
 

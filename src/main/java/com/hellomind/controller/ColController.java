@@ -69,7 +69,7 @@ public class ColController {
 	
 	@RequestMapping
 	public String colHome() {
-		return "col/home";
+		return "col/main";
 	}
 	
 	@RequestMapping(value="login", method=RequestMethod.POST)

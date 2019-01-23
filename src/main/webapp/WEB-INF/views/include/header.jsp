@@ -22,7 +22,7 @@
 					<ul class="dropdown-menu dropdown-menu-right dropdown-danger">
 						<li class="dropdown-header">councelling</li>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="${root}/col/search">상담하기</a>
+						<a class="dropdown-item" href="${root}/schd/memberChat">상담하기</a>
 						<a class="dropdown-item" href="#pk">이용권 구매하기</a>
 						<a class="dropdown-item" href="${root}/col">상담사 지원하기</a>
 					</ul>

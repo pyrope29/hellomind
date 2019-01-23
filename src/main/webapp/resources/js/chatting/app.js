@@ -21,8 +21,8 @@ app.set('port', process.env.PORT || 3000);
 app.use(function(request, response, next){
 	//미들웨어 설정 후 변수 셋팅
 	var id = request.query.id;
-	/*var date = request.param('date');
-	var time = request.param('time');*/
+	/*var date = request.query.date;
+	var time = request.query.time;*/
 	console.log('아이디: ' + id /*+ 'date  : ' + date +'time:' + time*/);
 	next();
 });
@@ -34,7 +34,7 @@ var server = http.createServer(app).listen(app.get('port'), function(){
 	
 	
 	
-	console.log('id 님이 입장하셨습니다');//id = 상담사일경우 cId, 멤버일경우 mId가 파라미터의 id값으로 이동
+	console.log(/* id */ +' 님이 입장하셨습니다');//id = 상담사일경우 cId, 멤버일경우 mId가 파라미터의 id값으로 이동
 	console.log('서버가 시작되었습니다. 포트 : ' + app.get('port'));
 });
 
@@ -87,6 +87,32 @@ io.sockets.on('connection', function(socket) {
         sendResponse(socket, 'login', '200', '로그인되었습니다.');
     });
 
+
+    
+    
+    
+    console.log('한명의 유저가 접속을 했습니다.');
+    socket.on('disconnect', function () {
+        console.log('한명의 유저가 접속해제를 했습니다.');
+    });
+ 
+    socket.on('send_msg', function (msg) {
+        console.log(msg);
+    });
+
+    
+    //소켓 서버로 부터 send_msg를 통해 이벤트를 받을 경우 
+    socket.on('send_msg', function(msg) {
+        //div 태그를 만들어 텍스트를 msg로 지정을 한뒤 #chat_box에 추가를 시켜준다.
+        $('<div></div>').text(msg).appendTo("#chat_box");
+    });
+
+
+    
+    
+    
+    
+    
     
     // 'message' 이벤트를 받았을 때의 처리
     socket.on('message', function(message) {
