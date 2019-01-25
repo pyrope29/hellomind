@@ -4,12 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -27,8 +24,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hellomind.dto.ColDetDto;
 import com.hellomind.dto.ColDto;
-import com.hellomind.dto.MemberDto;
-import com.hellomind.dto.SchdDto;
 import com.hellomind.service.ColDetService;
 import com.hellomind.service.ColService;
 
@@ -90,6 +85,11 @@ public class ColController {
 				model.addAttribute("url", "/col");
 				return "common/error";
 			}
+			if(session.getAttribute("userInfo")!=null) {
+				model.addAttribute("msg", "회원으로 로그인 되어있습니다. 로그아웃해 주세요.");
+				model.addAttribute("url", "/col");
+				return "common/error";
+			}
 			if (passwordEncoder.matches(pw, colDto.getcPw())) {
 			/* if(pw.equals(memberDto.getmPw())) { */
 				model.addAttribute("msg", id + " 님 환영합니다");
@@ -125,7 +125,7 @@ public class ColController {
 	@Transactional
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public String join(@RequestParam Map<String, String> param, Model model, @RequestParam("pic") MultipartFile multipartFile,
-			@RequestParam("cert") MultipartFile multipartFile2) throws IOException {
+			@RequestParam("cert") MultipartFile multipartFile2, HttpSession session) throws IOException {
 		System.out.println(param +"\n"+ multipartFile +"\n"); 
 		ColDto colDto = new ColDto();
 		colDto.setcId(param.get("cId"));
@@ -146,10 +146,10 @@ public class ColController {
 			String opicture = multipartFile.getOriginalFilename();
 			String opicture2 = multipartFile2.getOriginalFilename();
 			
-			String realPath = servletContext.getRealPath("/img/pic");
+			String realPath = servletContext.getRealPath("/img/upload/pic");
 			System.out.println("realpath : " + realPath);
 			
-			String realPath2 = servletContext.getRealPath("/img/cert");
+			String realPath2 = servletContext.getRealPath("/img/upload/cert");
 			System.out.println("realpath2 : " + realPath2);
 			
 			DateFormat df = new SimpleDateFormat("yyMMdd");
@@ -169,7 +169,7 @@ public class ColController {
 				dir2.mkdirs();
 			
 			String savePicture = UUID.randomUUID().toString() + opicture.substring(opicture.lastIndexOf('.'));
-			String savePicture2 = param.get("cId") + UUID.randomUUID().toString() + opicture2.substring(opicture2.lastIndexOf('.'));
+			String savePicture2 = param.get("cId")+"_" + UUID.randomUUID().toString() + opicture2.substring(opicture2.lastIndexOf('.'));
 			
 			File file = new File(fullSaveFolder, savePicture);
 			File file2 = new File(fullSaveFolder2, savePicture2);
@@ -193,6 +193,8 @@ public class ColController {
 			model.addAttribute("msg", "상담사 가입이 완료되었습니다.");
 			model.addAttribute("url", "/col");
 		}
+		
+		System.out.println("??????:"+session.getServletContext().getRealPath("/WEB-INF/"));
 		return "common/info";
 	}
 	

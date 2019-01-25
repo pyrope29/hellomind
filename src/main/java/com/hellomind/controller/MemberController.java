@@ -91,24 +91,28 @@ public class MemberController {
 		if (memberDto != null) {
 			if(memberDto.getmStats().equals("2")) {
 				model.addAttribute("msg", "탈퇴한 아이디입니다");
-				model.addAttribute("url", "member/login");
+				model.addAttribute("url", "login");
+				return "common/error";
+			}
+			if(session.getAttribute("userInfo")!=null) {
+				model.addAttribute("msg", "상담사로 로그인 되어있습니다. 로그아웃해 주세요.");
+				model.addAttribute("url", "login");
 				return "common/error";
 			}
 			if (passwordEncoder.matches(pw, memberDto.getmPw())) {
-			/* if(pw.equals(memberDto.getmPw())) { */
 				model.addAttribute("msg", id + " 님 환영합니다");
 				session.setAttribute("userInfo", memberDto);
 				model.addAttribute("url", "../");
-				return "common/info";
+				return "common/info2";
 			} else {
 				model.addAttribute("msg", "비밀번호가 잘못되었습니다");
-				model.addAttribute("url", "member/login");
+				model.addAttribute("url", "login");
 				return "common/error";
 			}
 		} else {
 			System.out.println("memberDto :" + memberDto);
 			model.addAttribute("msg", "아이디가 잘못되었습니다");
-			model.addAttribute("url", "member/login");
+			model.addAttribute("url", "login");
 			return "common/error";
 		}
 	}

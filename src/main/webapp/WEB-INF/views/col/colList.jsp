@@ -76,98 +76,100 @@
 		<div class="page-header section-dark" style="background-image: url('${root}/resources/img/counselling1.jpg')">
 			<div class="content-center col-md-8" style="background-color: #ffffffc4; height: 1000px">
 				<div class="col-md-10 ml-auto mr-auto container" style="margin-top: 100px;">
+					
+					
+					
 					<div class="row">
 						<div class="col-md-3" style="margin-top:20px;">
-							<img src="${root}/resources/img/faces/joe-gardner-2.jpg" alt="Circle Image" 
+							<img src="${root}/resources/img/upload/pic/pic_2.jpg" alt="Circle Image" 
 							class="img-no-padding img-responsive img-col">
 						</div>	
 						<div class="col-md-9">
 							<div class="col-name row">
-								<div class="col-md-4"><h4 style="margin:10 0; text-align:center;">이주영</h4></div>
+								<div class="col-md-4 colName"><h4 style="margin:10 0; text-align:center;">이주영</h4></div>
 								<btn class="btn-col col-md-2 btn-round">
 								<i class="nc-icon nc-favourite-28" aria-hidden="true">&nbsp;&nbsp;후기
-									25 &nbsp;&nbsp;</i></btn>  &nbsp;&nbsp;
+									15 &nbsp;&nbsp;</i></btn>  &nbsp;&nbsp;
 									<btn class="btn-info btn-round col-md-2 btn-col" 
 									onclick="location.href='${root}/col/viewColDet'">더보기</btn>
 							</div>
-							<h6 style="color:red; margin: 10 0 0 30;">2급 상담사</h6><br/>
+							<div class="col-md-4"><h6 style="color:red; margin-top:10;">예비 상담사</h6></div>
 								<div class="col-md-12">
-									<p>An artist of considerable range, Jane Faker — the name
-										taken by Melbourne-raised, Brooklyn-ba Faker — the name taken by
-										Melbourne-raised</p>
+									<p>살아가는 것이 유독 힘들 때가 있습니다. '주변 사람들이 태평하고 즐겁게 하루를 사는 것 같은데 나는 왜 아닐까?'
+									50회 이상의 임상 심리 전문 치료 경험과 70회 이상의 무료 봉사. 이처럼 준비된 상담사에게 한번 기대보는 것은 어떨까요?</p>
 								</div>
 						</div>
-					</div></br></br>
+					</div><br/>
 
-					
-				
-				
-						<div class="row">
+				<div class="row">
 						<div class="col-md-3" style="margin-top:20px;">
-							<img src="${root}/resources/img/faces/joe-gardner-2.jpg" alt="Circle Image" 
+							<img src="${root}/resources/img/upload/pic/pic_3.jpg" alt="Circle Image" 
 							class="img-no-padding img-responsive img-col">
 						</div>	
 						<div class="col-md-9">
 							<div class="col-name row">
-								<div class="col-md-4"><h4 style="margin:10 0; text-align:center;">김선주</h4></div>
+								<div class="col-md-4 colName"><h4 style="margin:10 0; text-align:center;">민지섭</h4></div>
 								<btn class="btn-col col-md-2 btn-round">
-								<i class="nc-icon nc-favourite-28" aria-hidden="true"></i>&nbsp;&nbsp;후기
-									25 &nbsp;&nbsp;</btn>  &nbsp;&nbsp;
-									<btn class="btn-info btn-round col-md-2 btn-col">더보기</btn>
+								<i class="nc-icon nc-favourite-28" aria-hidden="true">&nbsp;&nbsp;후기
+									3 &nbsp;&nbsp;</i></btn>  &nbsp;&nbsp;
+									<btn class="btn-info btn-round col-md-2 btn-col" 
+									onclick="location.href='${root}/col/viewColDet'">더보기</btn>
 							</div>
-							<h6 style="color:red; margin: 10 0 0 30;">예비 상담사</h6><br/>
+							<div class="col-md-4"><h6 style="color:red; margin-top:10;">2급 상담사</h6></div>
 								<div class="col-md-12">
-									<p>An artist of considerable range, Jane Faker — the name
-										taken by Melbourne-raised, Brooklyn-ba Faker — the name taken by
-										Melbourne-raised</p>
+									<p>살아가는 것이 유독 힘들 때가 있습니다. '주변 사람들이 태평하고 즐겁게 하루를 사는 것 같은데 나는 왜 아닐까?'
+									50회 이상의 임상 심리 전문 치료 경험과 70회 이상의 무료 봉사. 이처럼 준비된 상담사에게 한번 기대보는 것은 어떨까요?</p>
 								</div>
 						</div>
-					</div></br></br>
-							<div class="row">
+					</div><br/>
+			
+					<div class="row">
 						<div class="col-md-3" style="margin-top:20px;">
-							<img src="${root}/resources/img/faces/joe-gardner-2.jpg" alt="Circle Image" 
+							<img src="${root}/resources/img/upload/pic/pic_1.jpg" alt="Circle Image" 
 							class="img-no-padding img-responsive img-col">
 						</div>	
 						<div class="col-md-9">
 							<div class="col-name row">
-								<div class="col-md-4"><h4 style="margin:10 0; text-align:center;">서국현</h4></div>
+								<div class="col-md-4 colName"><h4 style="margin:10 0; text-align:center;">곽은진</h4></div>
 								<btn class="btn-col col-md-2 btn-round">
-								<i class="nc-icon nc-favourite-28" aria-hidden="true"></i>&nbsp;&nbsp;후기
-									25 &nbsp;&nbsp;</btn>  &nbsp;&nbsp;
-									<btn class="btn-info btn-round col-md-2 btn-col">더보기</btn>
+								<i class="nc-icon nc-favourite-28" aria-hidden="true">&nbsp;&nbsp;후기
+									15 &nbsp;&nbsp;</i></btn>  &nbsp;&nbsp;
+									<btn class="btn-info btn-round col-md-2 btn-col" 
+									onclick="location.href='${root}/col/viewColDet'">더보기</btn>
 							</div>
-							<h6 style="color:red; margin: 10 0 0 30;">1급 상담사</h6><br/>
+							<div class="col-md-4"><h6 style="color:red; margin-top:10;">예비 상담사</h6></div>
 								<div class="col-md-12">
-									<p>An artist of considerable range, Jane Faker — the name
-										taken by Melbourne-raised, Brooklyn-ba Faker — the name taken by
-										Melbourne-raised</p>
+									<p>살아가는 것이 유독 힘들 때가 있습니다. '주변 사람들이 태평하고 즐겁게 하루를 사는 것 같은데 나는 왜 아닐까?'
+									50회 이상의 임상 심리 전문 치료 경험과 70회 이상의 무료 봉사. 이처럼 준비된 상담사에게 한번 기대보는 것은 어떨까요?</p>
 								</div>
 						</div>
-					</div></br></br>
-							<div class="row">
+					</div><br/>
+							
+					<div class="row">
 						<div class="col-md-3" style="margin-top:20px;">
-							<img src="${root}/resources/img/faces/joe-gardner-2.jpg" alt="Circle Image" 
+							<img src="${root}/resources/img/upload/pic/pic_1.jpg" alt="Circle Image" 
 							class="img-no-padding img-responsive img-col">
 						</div>	
 						<div class="col-md-9">
 							<div class="col-name row">
-								<div class="col-md-4"><h4 style="margin:10 0; text-align:center;">민지형</h4></div>
+								<div class="col-md-4 colName"><h4 style="margin:10 0; text-align:center;">서은준</h4></div>
 								<btn class="btn-col col-md-2 btn-round">
-								<i class="nc-icon nc-favourite-28" aria-hidden="true"></i>&nbsp;&nbsp;후기
-									25 &nbsp;&nbsp;</btn>  &nbsp;&nbsp;
-									<btn class="btn-info btn-round col-md-2 btn-col">더보기</btn>
+								<i class="nc-icon nc-favourite-28" aria-hidden="true">&nbsp;&nbsp;후기
+									3 &nbsp;&nbsp;</i></btn>  &nbsp;&nbsp;
+									<btn class="btn-info btn-round col-md-2 btn-col" 
+									onclick="location.href='${root}/col/viewColDet'">더보기</btn>
 							</div>
-							<h6 style="color:red; margin: 10 0 0 30;">2급 상담사</h6><br/>
+							<div class="col-md-4"><h6 style="color:red; margin-top:10;">2급 상담사</h6></div>
 								<div class="col-md-12">
-									<p>An artist of considerable range, Jane Faker — the name
-										taken by Melbourne-raised, Brooklyn-ba Faker — the name taken by
-										Melbourne-raised</p>
+									<p>살아가는 것이 유독 힘들 때가 있습니다. '주변 사람들이 태평하고 즐겁게 하루를 사는 것 같은데 나는 왜 아닐까?'
+									50회 이상의 임상 심리 전문 치료 경험과 70회 이상의 무료 봉사. 이처럼 준비된 상담사에게 한번 기대보는 것은 어떨까요?</p>
 								</div>
 						</div>
-					</div><br/><br/>
-				
-					<nav class="container" style="text-align:center;">
-						<ul class="pagination">
+					</div>
+					<br/>
+					<br/><br/>
+					<!-- <nav class="text-xs-center"> -->
+						<ul class="pagination" style="justify-content: center;">
 		                    <li class="page-item">
 		                        <a class="page-link" href="#" aria-label="Previous">
 		                            <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -186,7 +188,7 @@
 		                        </a>
 		                    </li>
 		                </ul>
-					</nav>
+					<!-- </nav> -->
 				</div>
 			</div>
 		</div>

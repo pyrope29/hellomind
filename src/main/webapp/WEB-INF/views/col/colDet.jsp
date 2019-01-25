@@ -43,7 +43,7 @@
  .col-review-box{
  	 box-sizing: border-box;
     border: 1px solid #dddddd;
-    padding:20px;
+    padding:15px;
  }
  .ul-career li{
  	margin-bottom:15;
@@ -76,7 +76,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-4" style="margin-top:20px;">
-								<img src="${root}/resources/img/faces/joe-gardner-2.jpg" alt="Circle Image" 
+								<img src="${root}/resources/img/upload/pic/pic_2.jpg" alt="Circle Image" 
 								class="img-no-padding img-responsive img-col">
 							</div>	
 							<div class="col-md-8" style="margin-top:50px;">
@@ -84,12 +84,12 @@
 									<div class="col-md-5"><h2 style="margin:10 0; text-align:center;">이주영</h2></div>
 									<btn class="btn-col col-md-3 btn-round" onclick="fnMove('3')">
 									<i class="nc-icon nc-favourite-28" aria-hidden="true">&nbsp;후기
-										25 &nbsp;</i></btn> 
+										3 &nbsp;</i></btn> 
 								</div>
 								<div class="row">
 									<div class="col-md-5">
-									<h4 style="color:red; margin: 10 0 0 30;">2급 상담사</h4><br/></div>
-									<btn class="btn-success col-md-5 btn-col" 
+									<h4 style="color:red; margin: 10 0; text-align:center;">예비 상담사</h4><br/></div>
+									<btn class="btn-success col-md-5 btn-col btn-round btn-lg" 
 										onclick="location.href='${root}/schd/memberRegist?cId=${cId}'">예약하러 가기</btn>
 								</div>
 							</div>
@@ -105,9 +105,9 @@
 								</p>
 							</div>
 					</div>
-					</div>
 				</div>
 			</div>
+		</div>
 			
 			
 		<div class="page-header section-dark" style="min-height:0; background-image: url('${root}/resources/img/counselling5.jpg')">
@@ -145,22 +145,10 @@
 									test
 								</div>
 							</div>
-							<div class="container col-review-box">
-								<div class="col-md-6"><h6><i class="nc-icon nc-chat-33"></i> ID: tester</h6></div>
-								<div class="col-md-12">
-									test
-								</div>
-							</div>
-							<div class="container col-review-box">
-								<div class="col-md-6"><h6><i class="nc-icon nc-chat-33"></i> ID: tester</h6></div>
-								<div class="col-md-12">
-									test
-								</div>
-							</div>
 					
 						<br/><br/>
 						<div class="container col-md-offset-4">
-							<ul class="pagination">
+							<ul class="pagination" style="justify-content: center;">
 			                    <li class="page-item">
 			                        <a class="page-link" href="#" aria-label="Previous">
 			                            <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -180,13 +168,7 @@
 			                    </li>
 			                </ul>
 						</div>
-						
-					
 					</div>
-				
-					
-					
-
 					
 					</div>
 				</div>

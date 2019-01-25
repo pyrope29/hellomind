@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hellomind.dao.SchdDao;
+import com.hellomind.dto.RegDto;
 import com.hellomind.dto.SchdDto;
 
 @Service
@@ -39,4 +40,5 @@ public class SchdServiceImpl implements SchdService {
 	public int deleteSchd(Map<String, String> map) {
 		return sqlSession.getMapper(SchdDao.class).deleteSchd(map);
 	}
+
 }

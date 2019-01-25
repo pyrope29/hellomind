@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -32,7 +33,7 @@ public class SchdController {
 	@Autowired
 	private SchdService schdService;
 	@Autowired
-	private RegService RegService;
+	private RegService regService;
 
 	/* 상담사 - 가능한 일정 보여주는 페이지 */
 	@RequestMapping("regist")
@@ -49,19 +50,19 @@ public class SchdController {
 
 		for (int i = 0; i < availableDateTime.size(); i++) {
 			// 날짜값받기
-			String keyName = availableDateTime.get(i).getschdDates();
+			String keyName = availableDateTime.get(i).getSchdDates();
 			dateList.add(keyName);
 
 			Map<String, ArrayList<String>> tempMap = new HashMap<String, ArrayList<String>>();
 			ArrayList<String> timeList = new ArrayList<>();
-			String date = availableDateTime.get(i).getschdDates();
-			String time = availableDateTime.get(i).getschdTime();
+			String date = availableDateTime.get(i).getSchdDates();
+			String time = availableDateTime.get(i).getSchdTime();
 
 			timeList.add(time);
 
 			for (int j = i + 1; j < availableDateTime.size(); j++) {
-				if (availableDateTime.get(i).getschdDates().equals(availableDateTime.get(j).getschdDates())) {
-					timeList.add(availableDateTime.get(j).getschdTime());
+				if (availableDateTime.get(i).getSchdDates().equals(availableDateTime.get(j).getSchdDates())) {
+					timeList.add(availableDateTime.get(j).getSchdTime());
 					i++;
 				}
 			}
@@ -99,8 +100,8 @@ public class SchdController {
 		for (int i = 0; i < splitStr.length; i++) {
 
 			schdDto.setcId(cId);
-			schdDto.setschdDates(date);
-			schdDto.setschdTime(splitStr[i]);
+			schdDto.setSchdDates(date);
+			schdDto.setSchdTime(splitStr[i]);
 			System.out.println("넘어온 시간의 splitStr[i]) :" + splitStr[i]);
 			System.out.println("새로 만든 schdDto는 :" + schdDto);
 
@@ -146,19 +147,19 @@ public class SchdController {
 
 		for (int i = 0; i < availableDateTime.size(); i++) {
 			// 날짜값받기
-			String keyName = availableDateTime.get(i).getschdDates();
+			String keyName = availableDateTime.get(i).getSchdDates();
 			dateList.add(keyName);
 
 			Map<String, ArrayList<String>> tempMap = new HashMap<String, ArrayList<String>>();
 			ArrayList<String> timeList = new ArrayList<>();
-			String date = availableDateTime.get(i).getschdDates();
-			String time = availableDateTime.get(i).getschdTime();
+			String date = availableDateTime.get(i).getSchdDates();
+			String time = availableDateTime.get(i).getSchdTime();
 
 			timeList.add(time);
 
 			for (int j = i + 1; j < availableDateTime.size(); j++) {
-				if (availableDateTime.get(i).getschdDates().equals(availableDateTime.get(j).getschdDates())) {
-					timeList.add(availableDateTime.get(j).getschdTime());
+				if (availableDateTime.get(i).getSchdDates().equals(availableDateTime.get(j).getSchdDates())) {
+					timeList.add(availableDateTime.get(j).getSchdTime());
 					i++;
 				}
 			}
@@ -216,30 +217,81 @@ public class SchdController {
 
 		System.out.println("schdDTo : " + schdDTo);
 
-		RegService.insertReg(regDto);
+		regService.insertReg(regDto);
 
 		model.addAttribute("msg", "상담 시간이 확정되었습니다.");
-		model.addAttribute("url", "memberRegist?cId=" + param.get("cId"));
+		model.addAttribute("url", "/schd/memberRegist?cId=" + param.get("cId"));
 		return "common/info";
 	}
 	
 	
-	/* 채팅 방 들어가기*/
-	
+	/* id파라미터값 갖고 채팅 방 들어가기*/
+	//TODO
+	//여기서 방들어갈수 있을지 없을지 시간 대조. schd의 일정가능날짜와 시간을 가져와서, 현재날짜와 비교, 현재날짜안에 속해 있으면 방에 입장 가능. 아니면 불가능.
+		//?? nodejs에서 make room해야한다는데???????
 	@RequestMapping(value = "chat", method = RequestMethod.GET)
-	public void colChat(HttpSession session, Model model, HttpServletResponse response) {
+	public String colChat(HttpSession session, Model model/*, RedirectAttributes redirectAttributes*/) {
+
+		RegDto regDto = regService.selectReg();
+		System.out.println("regDto : " + regDto);
 		
 		ColDto colDto = (ColDto)session.getAttribute("colInfo");
-		model.addAttribute("id", colDto.getcId());
-		
-		//if
-		/*
 		MemberDto memberDto = (MemberDto)session.getAttribute("userInfo");
-		model.addAttribute("mId", memberDto.getmId());*/
-		response.setHeader("Location", "http://localhost:3000");
 		
-		
-		//http://localhost:3000/hellomind/chat.html?id=id
-	}
+		if(regDto == null) {
+			
+			if(colDto != null) {
+				model.addAttribute("msg", "상담 시간이 아닙니다.");
+				model.addAttribute("msg2", "MY ACCOUNT > 일정 관리 에서 일정 확인 가능합니다");
+				model.addAttribute("url", "/col");
+				return "common/error2";
+				
+			} else {
+				model.addAttribute("msg", "상담 시간이 아닙니다.");
+				model.addAttribute("msg2", "MY MIND > 예약내역 에서 일정 확인 가능합니다");
+				model.addAttribute("url", "/");
+				return "common/error2";
+			}
+			
+		} else {
+			
+			model.addAttribute("msg", "상담 시간이 확인되었습니다.");
+			
+			String sender="";
+			String recepient="";
+			
+			if(colDto != null) {
+				/*redirectAttributes.addAttribute("cId", colDto.getcId());
+				redirectAttributes.addAttribute("mId", regDto.getmId());*/
 
+				recepient = regDto.getmId();
+				sender = colDto.getcId();
+				 
+				model.addAttribute("msg2", regDto.getmId() + "회원님과 "+ 
+						regDto.getSchdDateTime().substring(0, 12) + "시에 예약되어 있습니다." +
+						"채팅 상담실에 입장합니다.");
+				
+			} else if(memberDto != null) {
+				/*redirectAttributes.addAttribute("mId", memberDto.getmId());
+				redirectAttributes.addAttribute("cId", regDto.getcId());*/
+				
+				sender = memberDto.getmId();
+				recepient = regDto.getcId();
+				
+				model.addAttribute("msg2", regDto.getcId() + "상담사와 "+ 
+						regDto.getSchdDateTime().substring(0, 12) + "시에 예약되어 있습니다. " +
+						"채팅 상담실에 입장합니다.");
+				
+			} 
+			
+			String schdDateTime = regDto.getSchdDateTime();
+			int schdNum = regDto.getSchdNum();
+			
+			System.out.println("*********" + sender);
+			System.out.println("*********" + recepient);
+			
+			model.addAttribute("url", "/hellomind?sender="+sender+"&recepient="+recepient );
+			return "common/info2";
+		}
+	}
 }

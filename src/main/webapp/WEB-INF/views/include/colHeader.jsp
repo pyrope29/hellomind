@@ -24,7 +24,7 @@
 					<ul class="dropdown-menu dropdown-menu-right dropdown-danger">
 						<li class="dropdown-header">councelling</li>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="${root}/schd/colChat">상담하기</a>
+						<a class="dropdown-item" href="${root}/schd/chat">상담하기</a>
 						<a class="dropdown-item" href="${root}/col/colPage">내 상담사 페이지 관리</a>
 					</ul>
 				</div>

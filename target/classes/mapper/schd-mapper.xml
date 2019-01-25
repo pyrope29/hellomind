@@ -3,20 +3,21 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hellomind.dao.SchdDao">
 	<insert id="insertSchd" parameterType="schdDto">
-		INSERT INTO SCHD (CID,SCHDDATES,SCHDTIME) 
-			VALUES(#{cId}, #{schdDates}, #{schdTime})
+		INSERT INTO SCHD (CID,SCHDDATES,SCHDTIME,SCHDDATETIME) 
+			VALUES(#{cId}, #{schdDates}, #{schdTime},
+			STR_TO_DATE(CONCAT(#{schdDates},' ',#{schdTime},':00:00'),'%Y-%m-%d %H:%i:%s'))
 	</insert>	
 	<update id="updateSchd" parameterType="schdDto">
 		UPDATE SCHD SET 
 			CID=#{cId}, SCHDDATES = STR_TO_DATE(#{schdDates},'%Y-%m-%d'), SCHDTIME = #{schdTime}
 	</update>
 	<select id="selectSchd"  parameterType="Map" resultType="schdDto">
-			SELECT SCHDNUM, CID, SCHDTIME, DATE_FORMAT(SCHDDATES,'%Y-%m-%d') SCHDDATES
+			SELECT SCHDNUM, CID, SCHDTIME, DATE_FORMAT(SCHDDATES,'%Y-%m-%d') SCHDDATES, SCHDDATETIME
 			FROM SCHD 
 				WHERE CID=#{cId} and SCHDDATES = STR_TO_DATE(#{schdDates},'%Y-%m-%d') and SCHDTIME = #{schdTime}
 	</select>
 	<select id="selectSchdById"  parameterType="String" resultType="schdDto">
-			SELECT s.SCHDNUM, s.CID, s.SCHDTIME, DATE_FORMAT(s.SCHDDATES,'%Y-%m-%d') SCHDDATES
+			SELECT s.SCHDNUM, s.CID, s.SCHDTIME, DATE_FORMAT(s.SCHDDATES,'%Y-%m-%d') SCHDDATES,s.SCHDDATETIME
 			FROM SCHD s LEFT OUTER JOIN REG r
 				on s.schdnum = r.schdnum
 				WHERE (s.SCHDDATES BETWEEN NOW() AND NOW()+INTERVAL 14 DAY) 

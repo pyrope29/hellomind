@@ -6,4 +6,17 @@
 		INSERT INTO REG (SCHDNUM, MID) 
 			VALUES(#{schdNum}, #{mId})
 	</insert>	
+	<select id="selectReg"  parameterType="Map" resultType="regDto">
+		SELECT R.SCHDNUM, S.CID, R.MID, S.SCHDDATETIME
+		FROM REG R JOIN SCHD S
+			ON R.SCHDNUM = S.SCHDNUM
+				WHERE S.SCHDDATETIME = DATE_FORMAT(NOW(), '%Y-%m-%d %H:00:00')
+	</select>
+	<select id="selectRegByMid"  parameterType="String" resultType="regDto">
+			SELECT s.CID, s.SCHDDATETIME, r.mid, r.schdnum 
+			FROM SCHD s JOIN REG r
+				on s.schdnum = r.schdnum
+				WHERE (s.SCHDDATES BETWEEN NOW() AND NOW()+INTERVAL 14 DAY) 
+					AND r.mid = #{mId}
+	</select>
 </mapper>

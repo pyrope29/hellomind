@@ -42,8 +42,8 @@
 <script src="${root}/resources/js/moment.min.js"></script>
 <script src="${root}/resources/js/bootstrap-datetimepicker.min.js"></script>
 
-<!--  Paper Kit Initialization and functons -->
-<script src="${root}/resources/js/paper-kit.js"></script>
+<%-- <!--  Paper Kit Initialization and functons -->
+<script src="${root}/resources/js/paper-kit.js"></script> --%>
     
     
     
