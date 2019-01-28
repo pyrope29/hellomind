@@ -9,10 +9,9 @@
 			<div class="container">
 				<div class="title-brand">
 					<h1 class="main-font presentation-title" id="h1">hello mind<br/>상담사 전용 페이지</h1>
-				</div>
-				<h2 class="main-font presentation-subtitle" id="h2"> ____<br><br>hello,
-					mind를 통해</h2>
-				<h3 class="main-font presentation-subtitle" id="h3">언제 어디서나 안정적인 상담환경을 제공해 보세요.</h3>	
+				</div><br/>
+				<h2 class="main-font presentation-subtitle" style="text-align:right" id="h2"> ____<br><br/><br/>Hello, Mind를 통해 
+				<br/><br/>언제 어디서나 안정적인 상담환경을 제공해 보세요.</h2><br/>
 			</div>
 		</div>
 	</div>

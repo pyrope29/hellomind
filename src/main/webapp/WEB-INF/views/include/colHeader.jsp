@@ -35,8 +35,8 @@
 						<li class="dropdown-header" href="#pk">My Account</li>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="${root}/col/modify">내 정보</a>
-						<a class="dropdown-item" href="${root}/schd/regist">일정 관리</a>
-						<a class="dropdown-item" href="#pk">상담 관리</a>
+						<a class="dropdown-item" href="${root}/schd/plan">일정 관리</a>
+						<a class="dropdown-item" href="${root}/schd/viewColRegist">상담 관리</a>
 					</ul>
 				</div>
 				

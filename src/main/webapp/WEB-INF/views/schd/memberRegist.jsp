@@ -93,16 +93,6 @@
 						</div>
 					</div>
 					<br />
-<!-- 				<br />
-			<div class="col-md-12">
-						<div class="tim-title">
-							<h5>안내 사항</h5>
-						</div>
-						<ul>
-							<li>원활한 상담을 위해 시간을 준수해 주세요</li>
-							<li>채팅 내용은 절대 기록되지 않습니다.</li>
-						</ul>
-					</div> -->
 					<br/>
 					<div class="container time-list">
 						<p>시간을 선택해 주세요</p>

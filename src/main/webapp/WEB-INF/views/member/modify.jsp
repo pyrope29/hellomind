@@ -17,7 +17,7 @@
 			<div class="row">
 				<div class="col-md-6 ml-auto mr-auto">		
 					<div class="name">
-					<h5 class="title" style="margin:15 0"><i class="nc-icon nc-settings-gear-65" aria-hidden="true"></i> 내 정보 수정</h5>
+					<h5 class="title" style="margin:40 0"><i class="nc-icon nc-settings-gear-65" aria-hidden="true"></i> 내 정보 수정</h5>
 					<blockquote class="blockquote" style="text-align:left">
                         <p class="description">헬로 마인드에 가입된 내 정보를 수정할 수 있는 페이지입니다</p>
                     </blockquote>

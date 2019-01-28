@@ -55,14 +55,15 @@ public class HomeController {
     	
     	model.addAttribute("sender", param.get("sender"));
     	model.addAttribute("recepient", param.get("recepient"));
-
+    	model.addAttribute("dateTime", param.get("dateTime"));
+    	
     	
     	Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
 		
-        
+        //console 전달
         JSONObject cred = new JSONObject();
         JSONObject auth=new JSONObject();
         JSONObject parent=new JSONObject();

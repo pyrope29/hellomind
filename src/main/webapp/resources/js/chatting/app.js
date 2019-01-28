@@ -4,6 +4,7 @@ var http = require('http').Server(app);
 var http2 = require('http');
 var io = require('socket.io')(http);
 
+var cron = require('node-cron');
 /* 노드의 시간을 톰캣에 전달하기 */
 require('date-utils');
 var newDate = new Date();
@@ -98,7 +99,7 @@ io.on('connection', function (socket) {
   
     
     socket.on('disconnect', function () {
-        console.log('접속 해제를 했습니다.');
+        console.log('접속 해제를 했습니다!!');
     });	
  
     

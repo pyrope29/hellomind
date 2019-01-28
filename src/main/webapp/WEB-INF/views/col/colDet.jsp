@@ -76,15 +76,15 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-4" style="margin-top:20px;">
-								<img src="${root}/resources/img/upload/pic/pic_2.jpg" alt="Circle Image" 
+								<img src="${root}/resources/img/upload/pic/pic_4.png" alt="Circle Image" 
 								class="img-no-padding img-responsive img-col">
 							</div>	
 							<div class="col-md-8" style="margin-top:50px;">
 								<div class="col-name row">
-									<div class="col-md-5"><h2 style="margin:10 0; text-align:center;">이주영</h2></div>
+									<div class="col-md-5"><h2 style="margin:10 0; text-align:center;">현지권</h2></div>
 									<btn class="btn-col col-md-3 btn-round" onclick="fnMove('3')">
 									<i class="nc-icon nc-favourite-28" aria-hidden="true">&nbsp;후기
-										3 &nbsp;</i></btn> 
+										15 &nbsp;</i></btn> 
 								</div>
 								<div class="row">
 									<div class="col-md-5">
@@ -99,9 +99,7 @@
 					<div class="container col-box">
 						<h4 style="margin-left:30px;" class="section1"> 소 개 </h4><br/>
 							 <div class="col-md-12">
-								<p> 살아가는 것이 유독 힘들 때가 있습니다. '주변 사람들이 태평하고 즐겁게 하루를 사는 것 같은데 나는 왜 아닐까?'<br/>
-									50회 이상의 임상 심리 전문 치료 경험과 70회 이상의 무료 봉사. 이처럼 준비된 상담사에게 한번 기대보는 것은 어떨까요?<br/>
-									경희대 심리대학원을 졸업, 5년 이상을 함께 해 온 저에게 한번 맡겨보세요
+								<p> 헬로마인드 예비상담사 현지권입니다. 임상심리 상담경력 30회 이상 보유하고 있습니다. 
 								</p>
 							</div>
 					</div>
@@ -117,11 +115,8 @@
 					<div class="container col-box">
 						<h4 style="margin-left:30px;" class="section2"> 경 력 </h4><br/>
 							<ul class="ul-career">
-								<li>한국임상심리협회 임상심리 전문가</li>
-								<li>여성가족부 청소년 상담사 2급</li>
-								<li>보건복지부 정신보건 임상심리사</li>
-								<li>정신보건 임상심리사</li>
-								<li>상담 100회 이상</li>
+								<li>뉴딜대학원 심리상담학과 졸업</li>
+								<li>상담 30회 이상</li>
 							</ul>
 					</div>
 					<div class="container col-box">

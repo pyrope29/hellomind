@@ -120,7 +120,7 @@
                     <div class="row">
                         <div class="col-lg-8 ml-auto mr-auto">
                             <div class="card card-register" style="max-width: 600px;">
-                                <h3 class="title"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;&nbsp;Join</h3>
+                                <h3 class="title" style="color:white;"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;&nbsp;회원가입</h3>
                                 <form class="register-form" method="post" action="${root}/member" onsubmit="return formCheck();">
                                     <span class="info">*</span><label>아이디</label><span class="validateInfo" id="idValidateNull"></span>
 									<span class="validateInfo" id="idValidate"></span>

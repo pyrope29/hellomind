@@ -36,7 +36,7 @@ public class SchdController {
 	private RegService regService;
 
 	/* 상담사 - 가능한 일정 보여주는 페이지 */
-	@RequestMapping("regist")
+	@RequestMapping("plan")
 	public String schedule(Model model, HttpSession session) {
 
 		String cId = ((ColDto) session.getAttribute("colInfo")).getcId();
@@ -80,12 +80,12 @@ public class SchdController {
 		System.out.println("multiList : " + multiList);
 		model.addAttribute("multiList", multiList);
 
-		return "schd/colSchedule";
+		return "schd/plan";
 	}
 
 	/* 상담사 - 가능한 일정 등록하는 페이지 */
-	@RequestMapping("registSchd")
-	public String registSchd(String date, String time, Model model, HttpSession session) {
+	@RequestMapping("registPlan")
+	public String registPlan(String date, String time, Model model, HttpSession session) {
 		String cId = ((ColDto) session.getAttribute("colInfo")).getcId();
 
 		System.out.println("파라미터로 넘어온 시간 : " + time);
@@ -125,7 +125,7 @@ public class SchdController {
 			}
 		}
 		model.addAttribute("msg", "일정 관리가 완료되었습니다");
-		model.addAttribute("url", "/schd/regist");
+		model.addAttribute("url", "/schd/plan");
 
 		return "common/info";
 	}
@@ -228,7 +228,6 @@ public class SchdController {
 	/* id파라미터값 갖고 채팅 방 들어가기*/
 	//TODO
 	//여기서 방들어갈수 있을지 없을지 시간 대조. schd의 일정가능날짜와 시간을 가져와서, 현재날짜와 비교, 현재날짜안에 속해 있으면 방에 입장 가능. 아니면 불가능.
-		//?? nodejs에서 make room해야한다는데???????
 	@RequestMapping(value = "chat", method = RequestMethod.GET)
 	public String colChat(HttpSession session, Model model/*, RedirectAttributes redirectAttributes*/) {
 
@@ -259,7 +258,7 @@ public class SchdController {
 			
 			String sender="";
 			String recepient="";
-			
+			String dateTime = regDto.getSchdDateTime();
 			if(colDto != null) {
 				/*redirectAttributes.addAttribute("cId", colDto.getcId());
 				redirectAttributes.addAttribute("mId", regDto.getmId());*/
@@ -290,8 +289,24 @@ public class SchdController {
 			System.out.println("*********" + sender);
 			System.out.println("*********" + recepient);
 			
-			model.addAttribute("url", "/hellomind?sender="+sender+"&recepient="+recepient );
+			model.addAttribute("url", "/hellomind?sender="+sender+"&recepient="+recepient+"&dateTime="+dateTime);
 			return "common/info2";
 		}
 	}
+	
+	
+	
+	
+	
+	/* 상담사가 멤버가 등록해서 확정된 일정을 본다 */
+	
+	@RequestMapping(value = "viewColRegist", method = RequestMethod.GET)
+	public String viewColRegist(HttpSession session, Model model) {
+		
+		return "schd/viewColRegist";
+		
+	}
+
+		
+		
 }

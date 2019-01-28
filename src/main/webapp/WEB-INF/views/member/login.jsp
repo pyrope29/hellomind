@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-lg-4 ml-auto mr-auto">
                             <div class="card card-register">
-                                <h3 class="title"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;&nbsp;Login</h3>
+                                <h3 class="title" style="color:white"><i class="nc-icon nc-single-02" aria-hidden="true"></i>&nbsp;&nbsp;로그인</h3>
                                 <form class="register-form" method="post" action="${root}/member/login">
                                     <label>아이디</label>
                                     <input type="text" class="form-control" placeholder="아이디를 입력해 주세요" name="mId" id="id">

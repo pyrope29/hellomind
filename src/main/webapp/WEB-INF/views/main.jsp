@@ -24,7 +24,7 @@ session.setAttribute("userInfo", memberDto);
 				<div class="title-brand">
 					<h1 class="main-font presentation-title" id="h1">hello mind</h1>
 				</div>
-				<h2 class="main-font presentation-subtitle" id="h2"> ____<br><br>hello,
+				<h2 class="main-font presentation-subtitle" id="h2" style="font-family: 'Godo', sans-serif;"> ____<br><br>hello,
 					mind에 오신 걸 환영합니다.</h2>
 				<h3 class="main-font presentation-subtitle" id="h3">인터넷으로 당신의 고민을 상담하세요</h3>	
 			</div>

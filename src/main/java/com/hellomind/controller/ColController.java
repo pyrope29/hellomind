@@ -202,7 +202,7 @@ public class ColController {
 	public String viewColDet(Model model) {
 		System.out.println("상담사 디테일 요청");
 		//TODO
-		model.addAttribute("cId", "2");
+		model.addAttribute("cId", "hmcol");
 		return "col/colDet";
 	}
 	
